@@ -210,13 +210,13 @@ Pythonのコードは文と式から成り立っている。もっと言えば�
 実践的手引き:エラー
 ===================
 
-Python is waiting for your command. You are encouraged to experiment with the language, even though you may not yet know its full vocabulary and structure. However, be prepared for errors. While computers are tremendously fast and flexible, they are also extremely rigid. The nature of computers is described in Stanford's introductory course as
+Pythonプロンプトはあなたの入力を待機している。たとえあなたがPythonの語彙や文法を十分に知らなくても、あなたが習熟するまで辛抱強く付き合ってくれる。コンピューターの性質はスタンフォード大学の入門コースで次のように説明されている。
 
-    The fundamental equation of computers is: computer = powerful + stupid
+    コンピューターの基本方程式： コンピューター ＝ 強力さ ＋ 愚かさ
   
-    Computers are very powerful, looking at volumes of data very quickly. Computers can perform billions of operations per second, where each operation is pretty simple.
+コンピューターは非常に強力で、膨大な量のデータを瞬時に参照できる。コンピューターは、一つ一つは非常に単純な計算を、一秒間に数十億回も行う。
   
-    Computers are also shockingly stupid and fragile. The operations that they can do are extremely rigid, simple, and mechanical. The computer lacks anything like real insight .. it's nothing like the HAL 9000 from the movies. If nothing else, you should not be intimidated by the computer as if it's some sort of brain. It's very mechanical underneath it all.
+また、コンピューターはビックリするほど頭が悪く、そして壊れやすい。コンピューターが行う操作は極めて厳格で単純で、そして機械的である。コンピューターには何か現実的な視点が欠けている...が、しかし、The computer lacks anything like real insight .. it's nothing like the HAL 9000 from the movies. If nothing else, you should not be intimidated by the computer as if it's some sort of brain. It's very mechanical underneath it all.
   
     Programming is about a person using their real insight to build something useful, constructed out of these teeny, simple little operations that the computer can do.
   

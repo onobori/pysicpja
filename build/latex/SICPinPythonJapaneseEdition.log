@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.1415926-p3.4-110825-2.6 (utf8.euc) (TeX Live 2013/Debian) (format=platex 2015.4.28)  30 APR 2015 14:59
+This is e-pTeX, Version 3.1415926-p3.4-110825-2.6 (utf8.euc) (TeX Live 2013/Debian) (format=platex 2015.4.29)  30 APR 2015 23:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -965,12 +965,7 @@ LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
 
 ] [2
 
-] (./SICPinPythonJapaneseEdition.toc
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 2.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 2.
-)
+] (./SICPinPythonJapaneseEdition.toc)
 \tf@toc=\write7
 \openout7 = `SICPinPythonJapaneseEdition.toc'.
 
@@ -1006,76 +1001,80 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
 ]
 第1章
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 19.9311pt on input line 135.
+(Font)              scaled to size 19.9311pt on input line 137.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 19.9311pt on input line 135.
+(Font)              scaled to size 19.9311pt on input line 137.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 19.9311pt on input line 135.
+(Font)              scaled to size 19.9311pt on input line 137.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 19.9311pt on input line 135.
+(Font)              scaled to size 19.9311pt on input line 137.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 138.
+(Font)              scaled to size 13.83836pt on input line 142.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 138.
+(Font)              scaled to size 13.83836pt on input line 142.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 138.
+(Font)              scaled to size 13.83836pt on input line 142.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 138.
+(Font)              scaled to size 13.83836pt on input line 142.
 LaTeX Font Info:    Font shape `JT1/gt/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 138.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 142.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 138.
+(Font)              scaled to size 13.83836pt on input line 142.
 LaTeX Font Info:    Font shape `JY1/gt/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 138.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 142.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 13.83836pt on input line 138.
+(Font)              scaled to size 13.83836pt on input line 142.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 138.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 142.
 [3] [4]
-LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 198.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 198.
+(Font)              scaled to size 6.72699pt on input line 202.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 4.805pt on input line 202.
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 8.64899pt on input line 202.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 8.64899pt on input line 202.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 198.
+(Font)              scaled to size 8.64899pt on input line 202.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 198.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 198.
+(Font)              scaled to size 8.64899pt on input line 202.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 202.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 ) [5]
 LaTeX Font Info:    Font shape `JT1/gt/bx/n' in size <9> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 232.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 236.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 232.
+(Font)              scaled to size 8.64899pt on input line 236.
 LaTeX Font Info:    Font shape `JY1/gt/bx/n' in size <9> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 232.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 236.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 232.
+(Font)              scaled to size 8.64899pt on input line 236.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 232.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 236.
  [6]
-LaTeX Font Info:    Try loading font information for TS1+pcr on input line 281.
+LaTeX Font Info:    Try loading font information for TS1+pcr on input line 285.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 ) [7] [8] [9] [10]
-[11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22]
+[11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24]
 LaTeX Font Info:    Font shape `JT1/gt/m/it' in size <9> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 929.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 970.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 929.
+(Font)              scaled to size 8.64899pt on input line 970.
 LaTeX Font Info:    Font shape `JY1/gt/m/it' in size <9> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 929.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 970.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 929.
+(Font)              scaled to size 8.64899pt on input line 970.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 929.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 970.
 LaTeX Font Info:    Font shape `TS1/pcr/m/it' in size <9> not available
-(Font)              Font shape `TS1/pcr/m/sl' tried instead on input line 929.
- [23] [24] [25]
-[26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] 
+(Font)              Font shape `TS1/pcr/m/sl' tried instead on input line 970.
+ [25]
+[26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40] 
 
 ! Package inputenc Error: Unicode char \u8:天 not set up for use with LaTeX.
 
@@ -1083,23 +1082,17 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1616 ... wrote the square function as ``^^c5^^b7
+l.1682 ... wrote the square function as ``^^c5^^b7
                                                    . y × y''. But frustrate...
 
-? :q
-Type <return> to proceed, S to scroll future error messages,
-R to run without stopping, Q to run quietly,
-I to insert something, E to edit your file,
-1 or ... or 9 to ignore the next 1 to 9 tokens of input,
-H for help, X to quit.
 ? X
  
 Here is how much of TeX's memory you used:
- 8322 strings out of 495129
- 116813 string characters out of 6182595
- 209359 words of memory out of 5000000
- 11494 multiletter control sequences out of 15000+600000
- 50379 words of font info for 99 fonts, out of 8000000 for 9000
+ 8344 strings out of 495129
+ 116969 string characters out of 6182595
+ 210106 words of memory out of 5000000
+ 11516 multiletter control sequences out of 15000+600000
+ 52387 words of font info for 99 fonts, out of 8000000 for 9000
  86 hyphenation exceptions out of 8191
  36i,12n,45p,817b,444s stack positions out of 5000i,500n,10000p,200000b,80000s
-Output written on SICPinPythonJapaneseEdition.dvi (41 pages, 192880 bytes).
+Output written on SICPinPythonJapaneseEdition.dvi (44 pages, 196664 bytes).

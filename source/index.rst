@@ -10,6 +10,9 @@ Contents:
 
 Original: http://www-inst.eecs.berkeley.edu/~cs61a/sp12/book/
 
+License: Creative Commons Attribution-ShareAlike 3.0 license
+http://creativecommons.org/licenses/by-sa/3.0/
+
 .. toctree::
    :maxdepth: 2
 

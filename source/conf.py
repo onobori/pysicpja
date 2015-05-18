@@ -48,7 +48,7 @@ master_doc = 'index'
 # General information about the project.
 project = u'SICP in Python Japanese Edition'
 copyright = u'2015, Paul Hilfinger'
-author = u'Paul Hilfinger'
+author = u'Paul Hilfinger, Shingo Onobori'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -223,7 +223,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   (master_doc, 'SICPinPythonJapaneseEdition.tex', u'SICP in Python Japanese Edition Documentation',
-   u'Paul Hilfinger', 'manual'),
+   u'Paul Hilfinger 著 / 尾登 信吾 訳', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of

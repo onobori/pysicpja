@@ -20,8 +20,8 @@
 
 \title{SICP in Python Japanese Edition Documentation}
 \date{2015 年 04 月 30 日}
-\release{2015.04.29}
-\author{Paul Hilfinger, Shingo Onobori}
+\release{2015.04.30}
+\author{Paul Hilfinger}
 \newcommand{\sphinxlogo}{}
 \renewcommand{\releasename}{リリース}
 \makeindex
@@ -131,9 +131,13 @@
 
 Contents:
 
+Original: \href{http://www-inst.eecs.berkeley.edu/~cs61a/sp12/book/}{http://www-inst.eecs.berkeley.edu/\textasciitilde{}cs61a/sp12/book/}
+
 
 \chapter{第一章：関数を用いた抽象概念の構築}
 \label{functions::doc}\label{functions:welcome-to-sicp-in-python-japanese-edition-s-documentation}\label{functions:id1}
+原文: \href{http://www-inst.eecs.berkeley.edu/~cs61a/sp12/book/functions.html}{http://www-inst.eecs.berkeley.edu/\textasciitilde{}cs61a/sp12/book/functions.html}
+
 
 \section{導入}
 \label{functions:id2}
@@ -321,7 +325,7 @@ Pythonのコードは文と式から成り立っている。もっと言えば�
 最後になったが、我々は以下のような中心となる概念に関連する事柄を見ていく予定である。関数とオブジェクトであり、オブジェクトは関数であり、そしてインタプリタはそれら両方のインスタンスである。しかしながら、コードを組み立てていく中で、これらの概念と役割を明確に理解していくことは、プログラミングの神髄を理解していく上で重要なことである。
 
 
-\section{実践的指導:エラー}
+\section{実践的手引き:エラー}
 \label{functions:id5}
 Python is waiting for your command. You are encouraged to experiment with the language, even though you may not yet know its full vocabulary and structure. However, be prepared for errors. While computers are tremendously fast and flexible, they are also extremely rigid. The nature of computers is described in Stanford's introductory course as
 \begin{quote}
@@ -333,10 +337,10 @@ Computers are very powerful, looking at volumes of data very quickly. Computers 
 Computers are also shockingly stupid and fragile. The operations that they can do are extremely rigid, simple, and mechanical. The computer lacks anything like real insight .. it's nothing like the HAL 9000 from the movies. If nothing else, you should not be intimidated by the computer as if it's some sort of brain. It's very mechanical underneath it all.
 
 Programming is about a person using their real insight to build something useful, constructed out of these teeny, simple little operations that the computer can do.
+\begin{quote}
 
-\begin{flushright}
----Francisco Cai and Nick Parlante, Stanford CS101
-\end{flushright}
+—Francisco Cai and Nick Parlante, Stanford CS101
+\end{quote}
 \end{quote}
 
 The rigidity of computers will immediately become apparent as you experiment with the Python interpreter: even the smallest spelling and formatting changes will cause unexpected outputs and errors.
@@ -351,8 +355,10 @@ Consult others: You are not alone! If you don't understand an error message, ask
 \end{quote}
 
 Incremental testing, modular design, precise assumptions, and teamwork are themes that persist throughout this course. Hopefully, they will also persist throughout your computer science career.
-1.2   The Elements of Programming
 
+
+\section{プログラミングの要素}
+\label{functions:id6}
 A programming language is more than just a means for instructing a computer to perform tasks. The language also serves as a framework within which we organize our ideas about processes. Programs serve to communicate those ideas among the members of a programming community. Thus, programs must be written for people to read, and only incidentally for machines to execute.
 
 When we describe a language, we should pay particular attention to the means that the language provides for combining simple ideas to form more complex ideas. Every powerful language has three mechanisms for accomplishing this:
@@ -364,8 +370,10 @@ means of abstraction, by which compound elements can be named and manipulated as
 \end{quote}
 
 In programming, we deal with two kinds of elements: functions and data. (Soon we will discover that they are really not so distinct.) Informally, data is stuff that we want to manipulate, and functions describe the rules for manipulating the data. Thus, any powerful programming language should be able to describe primitive data and primitive functions and should have methods for combining and abstracting both functions and data.
-1.2.1   Expressions
 
+
+\section{式}
+\label{functions:id7}
 Having experimented with the full Python interpreter, we now must start anew, methodically developing the Python language piece by piece. Be patient if the examples seem simplistic --- more exciting material is soon to come.
 
 We begin with primitive expressions. One kind of primitive expression is a number. More precisely, the expression that you type consists of the numerals that represent the number in base 10.
@@ -378,15 +386,18 @@ We begin with primitive expressions. One kind of primitive expression is a numbe
 Expressions representing numbers may be combined with mathematical operators to form a compound expression, which the interpreter will evaluate:
 
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}
-\PYG{g+go}{0}
-\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mi}{2} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mi}{4} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mi}{8} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mi}{16} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mi}{32} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mi}{64} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mi}{128}
-\PYG{g+go}{0.9921875}
+\PYGZgt{}\PYGZgt{}\PYGZgt{} \PYGZhy{}1 \PYGZhy{} \PYGZhy{}1
+0
+\PYGZgt{}\PYGZgt{}\PYGZgt{} 式
+==1/2 + 1/4 + 1/8 + 1/16 + 1/32 + 1/64 + 1/128
+0.9921875
 \end{Verbatim}
 
-These mathematical expressions use infix notation, where the operator (e.g., +, -, {\color{red}\bfseries{}*}, or /) appears in between the operands (numbers). Python includes many ways to form compound expressions. Rather than attempt to enumerate them all immediately, we will introduce new expression forms as we go, along with the language features that they support.
-1.2.2   Call Expressions
+These mathematical expressions use infix notation, where the operator \emph{(e.g., +, -, *, or /)} appears in between the operands (numbers). Python includes many ways to form compound expressions. Rather than attempt to enumerate them all immediately, we will introduce new expression forms as we go, along with the language features that they support.
 
+
+\section{式の呼び出し}
+\label{functions:id8}
 The most important kind of compound expression is a call expression, which applies a function to some arguments. Recall from algebra that the mathematical notion of a function is a mapping from some input arguments to an output value. For instance, the max function maps its inputs to a single output, which is the largest of the inputs. A function in Python is more than just an input-output mapping; it describes a computational process. However, the way in which Python expresses function application is the same as in mathematics.
 
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -424,8 +435,10 @@ Second, function notation extends in a straightforward way to nested expressions
 There is no limit (in principle) to the depth of such nesting and to the overall complexity of the expressions that the Python interpreter can evaluate. However, humans quickly get confused by multi-level nesting. An important role for you as a programmer is to structure expressions so that they remain interpretable by yourself, your programming partners, and others who may read your code in the future.
 
 Finally, mathematical notation has a great variety of forms: multiplication appears between terms, exponents appear as superscripts, division as a horizontal bar, and a square root as a roof with slanted siding. Some of this notation is very hard to type! However, all of this complexity can be unified via the notation of call expressions. While Python supports common mathematical operators using infix notation (like + and -), any operator can be expressed as a function with a name.
-1.2.3   Importing Library Functions
 
+
+\section{ライブラリ関数のインポート}
+\label{functions:id9}
 Python defines a very large number of functions, including the operator functions mentioned in the preceding section, but does not make their names available by default, so as to avoid complete chaos. Instead, it organizes the functions and other quantities that it knows about into modules, which together comprise the Python Library. To use these elements, one imports them. For example, the math module provides a variety of familiar mathematical functions:
 
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -449,8 +462,10 @@ and the operator module provides access to functions corresponding to infix oper
 An import statement designates a module name (e.g., operator or math), and then lists the named attributes of that module to import (e.g., sqrt or exp).
 
 The Python 3 Library Docs list the functions defined by each module, such as the math module. However, this documentation is written for developers who know the whole language well. For now, you may find that experimenting with a function tells you more about its behavior than reading the documemtation. As you become familiar with the Python language and vocabulary, this documentation will become a valuable reference source.
-1.2.4   Names and the Environment
 
+
+\section{名前と環境}
+\label{functions:id10}
 A critical aspect of a programming language is the means it provides for using names to refer to computational objects. If a value has been given a name, we say that the name binds to the value.
 
 In Python, we can establish new bindings using the assignment statement, which contains a name to the left of = and a value to the right:
@@ -511,8 +526,10 @@ And successive assignment statements can rebind a name to a new value.
 \end{Verbatim}
 
 In Python, the names bound via assignment are often called variable names because they can be bound to a variety of different values in the course of executing a program.
-1.2.5   Evaluating Nested Expressions
 
+
+\section{入れ子になった式の評価}
+\label{functions:id11}
 One of our goals in this chapter is to isolate issues about thinking procedurally. As a case in point, let us consider that, in evaluating nested call expressions, the interpreter is itself following a procedure.
 
 To evaluate a call expression, Python will do the following:
@@ -562,8 +579,10 @@ This evaluation procedure does not suffice to evaluate all Python code, only cal
 does not return a value nor evaluate a function on some arguments, since the purpose of assignment is instead to bind a name to a value. In general, statements are not evaluated but executed; they do not produce a value but instead make some change. Each type of statement or expression has its own evaluation or execution procedure, which we will introduce incrementally as we proceed.
 
 A pedantic note: when we say that ``a numeral evaluates to a number,'' we actually mean that the Python interpreter evaluates a numeral to a number. It is the interpreter which endows meaning to the programming language. Given that the interpreter is a fixed program that always behaves consistently, we can loosely say that numerals (and expressions) themselves evaluate to values in the context of Python programs.
-1.2.6   Function Diagrams
 
+
+\section{関数ダイアグラム}
+\label{functions:id12}
 As we continue to develop a formal model of evaluation, we will find that diagramming the internal state of the interpreter helps us track the progress of our evaluation procedure. An essential part of these diagrams is a representation of a function.
 
 Pure functions. Functions have some input (their arguments) and return some output (the result of applying them). The built-in function
@@ -611,8 +630,10 @@ Be careful with print! The fact that it returns None means that it should not be
 \end{Verbatim}
 
 Signatures. Functions differ in the number of arguments that they are allowed to take. To track these requirements, we draw each function in a way that shows the function name and names of its arguments. The function abs takes only one argument called number; providing more or fewer will result in an error. The function print can take an arbitrary number of arguments, hence its rendering as print(...). A description of the arguments that a function can take is called the function's signature.
-1.3   Defining New Functions
 
+
+\section{新しい関数を定義する}
+\label{functions:id13}
 We have identified in Python some of the elements that must appear in any powerful programming language:
 \begin{quote}
 
@@ -667,8 +688,10 @@ We can also use square as a building block in defining other functions. For exam
 \end{Verbatim}
 
 User-defined functions are used in exactly the same way as built-in functions. Indeed, one cannot tell from the definition of sum\_squares whether square is built into the interpreter, imported from a module, or defined by the user.
-1.3.1   Environments
 
+
+\section{環境}
+\label{functions:id14}
 Our subset of Python is now complex enough that the meaning of programs is non-obvious. What if a formal parameter has the same name as a built-in function? Can two functions share names without confusion? To resolve such questions, we must describe environments in more detail.
 
 An environment in which an expression is evaluated consists of a sequence of frames, depicted as boxes. Each frame contains bindings, which associate a name with its corresponding value. There is a single global frame that contains name bindings for all built-in functions (only abs and max are shown). We indicate the global frame with a globe symbol.
@@ -699,8 +722,10 @@ The name max is the intrinsic name of the function, and that's what you see prin
 As we proceed to introduce additional features of Python, we will have to extend these diagrams. Every time we do, we will list the new features that our diagrams can express.
 
 New environment Features: Assignment and user-defined function definition.
-1.3.2   Calling User-Defined Functions
 
+
+\section{ユーザーが定義した関数の呼び出し}
+\label{functions:id15}
 To evaluate a call expression whose operator names a user-defined function, the Python interpreter follows a process similar to the one for evaluating expressions with a built-in operator function. That is, the interpreter evaluates the operand expressions, and then applies the named function to the resulting arguments.
 
 The act of applying a user-defined function introduces a second local frame, which is only accessible to that function. To apply a user-defined function to some arguments:
@@ -729,8 +754,10 @@ A name evaluates to the value bound to that name in the earliest frame of the cu
 Our conceptual framework of environments, names, and functions constitutes a model of evaluation; while some mechanical details are still unspecified (e.g., how a binding is implemented), our model does precisely and correctly describe how the interpreter evaluates call expressions. In Chapter 3 we shall see how this model can serve as a blueprint for implementing a working interpreter for a programming language.
 
 New environment Feature: Function application.
-1.3.3   Example: Calling a User-Defined Function
 
+
+\section{例題：ユーザーが定義した関数の呼び出し}
+\label{functions:id16}
 Let us again consider our two simple definitions:
 
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -787,8 +814,10 @@ Finally, applying addition to the arguments 25 and 144 yields a final value for 
 This figure, while complex, serves to illustrate many of the fundamental ideas we have developed so far. Names are bound to values, which spread across many local frames that all precede a single global frame that contains shared names. Expressions are tree-structured, and the environment must be augmented each time a subexpression contains a call to a user-defined function.
 
 All of this machinery exists to ensure that names resolve to the correct values at the correct points in the expression tree. This example illustrates why our model requires the complexity that we have introduced. All three local frames contain a binding for the name x, but that name is bound to different values in different frames. Local frames keep these names separate.
-1.3.4   Local Names
 
+
+\section{局所的名前}
+\label{functions:id17}
 One detail of a function's implementation that should not affect the function's behavior is the implementer's choice of names for the function's formal parameters. Thus, the following functions should provide the same behavior:
 
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -803,8 +832,10 @@ This principle -- that the meaning of a function should be independent of the pa
 If the parameters were not local to the bodies of their respective functions, then the parameter x in square could be confused with the parameter x in sum\_squares. Critically, this is not the case: the binding for x in different local frames are unrelated. Our model of computation is carefully designed to ensure this independence.
 
 We say that the scope of a local name is limited to the body of the user-defined function that defines it. When a name is no longer accessible, it is out of scope. This scoping behavior isn't a new fact about our model; it is a consequence of the way environments work.
-1.3.5   Practical Guidance: Choosing Names
 
+
+\section{実践的手引き：名前の選び方}
+\label{functions:id18}
 The interchangeabily of names does not imply that formal parameter names do not matter at all. To the contrary, well-chosen function and parameter names are essential for the human interpretability of function definitions!
 
 The following guidelines are adapted from the style guide for Python code, which serves as a guide for all (non-rebellious) Python programmers. A shared set of conventions smooths communication among members of a programming community. As a side effect of following these conventions, you will find that your code becomes more internally consistent.
@@ -818,8 +849,10 @@ Single letter parameter names are acceptable when their role is obvious, but nev
 \end{quote}
 
 Review these guidelines periodically as you write programs, and soon your names will be delightfully Pythonic.
-1.3.6   Functions as Abstractions
 
+
+\section{抽象概念としての関数}
+\label{functions:id19}
 Though it is very simple, sum\_squares exemplifies the most powerful property of user-defined functions. The function sum\_squares is defined in terms of the function square, but relies only on the relationship that square defines between its input arguments and its output values.
 
 We can write sum\_squares without concerning ourselves with how to square a number. The details of how the square is computed can be suppressed, to be considered at a later time. Indeed, as far as sum\_squares is concerned, square is not a particular function body, but rather an abstraction of a function, a so-called functional abstraction. At this level of abstraction, any function that computes the square is equally good.
@@ -834,8 +867,10 @@ Thus, considering only the values they return, the following two functions for s
 \end{Verbatim}
 
 In other words, a function definition should be able to suppress details. The users of the function may not have written the function themselves, but may have obtained it from another programmer as a ``black box''. A user should not need to know how the function is implemented in order to use it. The Python Library has this property. Many developers use the functions defined there, but few ever inspect their implementation. In fact, many implementations of Python Library functions are not written in Python at all, but instead in the C language.
-1.3.7   Operators
 
+
+\section{オペレーター}
+\label{functions:id20}
 Mathematical operators (like + and -) provided our first example of a method of combination, but we have yet to define an evaluation procedure for expressions that contain these operators.
 
 Python expressions with infix operators each have their own evaluation procedures, but you can often think of them as short-hand for call expressions. When you see
@@ -881,8 +916,10 @@ evaluates to the same result as
 \end{Verbatim}
 
 You should feel free to use these operators and parentheses in your programs. Idiomatic Python prefers operators over call expressions for simple mathematical operations.
-1.4   Practical Guidance: The Art of the Function
 
+
+\section{実践的手引き：関数の芸術}
+\label{functions:id21}
 Functions are an essential ingredient of all programs, large and small, and serve as our primary medium to express computational processes in a programming language. So far, we have discussed the formal properties of functions and how they are applied. We now turn to the topic of what makes a good function. Fundamentally, the qualities of good functions all reinforce the idea that functions are abstractions.
 \begin{quote}
 
@@ -892,8 +929,10 @@ Functions should be defined generally. Squaring is not in the Python Library pre
 \end{quote}
 
 These guidelines improve the readability of code, reduce the number of errors, and often minimize the total amount of code written. Decomposing a complex task into concise functions is a skill that takes experience to master. Fortunately, Python provides several features to support your efforts.
-1.4.1   Docstrings
 
+
+\section{ドックストリング}
+\label{functions:id22}
 A function definition will often include documentation describing the function, called a docstring, which must be indented along with the function body. Docstrings are conventionally triple quoted. The first line describes the job of the function in one line. The following lines can describe arguments and clarify the behavior of the function:
 
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -919,8 +958,10 @@ When you call help with the name of a function as an argument, you see its docst
 \end{Verbatim}
 
 When writing Python programs, include docstrings for all but the simplest functions. Remember, code is written only once, but often read many times. The Python docs include docstring guidelines that maintain consistency across different Python projects.
-1.4.2   Default Argument Values
 
+
+\section{デフォルトの引数値}
+\label{functions:id23}
 A consequence of defining general functions is the introduction of additional arguments. Functions with many arguments can be awkward to call and difficult to read.
 
 In Python, we can provide default values for the arguments of a function. When calling that function, arguments with default values are optional. If they are not provided, then the default value is bound to the formal parameter name instead. For instance, if an application commonly computes pressure for one mole of particles, this value can be provided as a default:
@@ -947,11 +988,15 @@ return n * k\_b * t / v
 Here, pressure is defined to take three arguments, but only two are provided in the call expression that follows. In this case, the value for n is taken from the def statement defaults (which looks like an assignment to n, although as this discussion suggests, it is more of a conditional assignment.)
 
 As a guideline, most data values used in a function's body should be expressed as default values to named arguments, so that they are easy to inspect and can be changed by the function caller. Some values that never change, like the fundamental constant k\_b, can be defined in the global frame.
-1.5   Control
 
+
+\section{制御}
+\label{functions:id24}
 The expressive power of the functions that we can define at this point is very limited, because we have not introduced a way to make tests and to perform different operations depending on the result of a test. Control statements will give us this capacity. Control statements differ fundamentally from the expressions that we have studied so far. They deviate from the strict evaluation of subexpressions from left to write, and get their name from the fact that they control what the interpreter should do next, possibly based on the values of expressions.
-1.5.1   Statements
 
+
+\section{文}
+\label{functions:id25}
 So far, we have primarily considered how to evaluate expressions. However, we have seen three kinds of statements: assignment, def, and return statements. These lines of Python code are not themselves expressions, although they all contain expressions as components.
 
 To emphasize that the value of a statement is irrelevant (or nonexistant), we describe statements as being executed rather than evaluated. Each statement describes some change to the interpreter state, and executing a statement applies that change. As we have seen for return and assignment statements, executing statements can involve evaluating subexpressions contained within them.
@@ -980,8 +1025,10 @@ Sometimes it does make sense to have a function whose body is an expression, whe
 \end{Verbatim}
 
 At its highest level, the Python interpreter's job is to execute programs, composed of statements. However, much of the interesting work of computation comes from evaluating expressions. Statements govern the relationship among different expressions in a program and what happens to their results.
-1.5.2   Compound Statements
 
+
+\section{複文}
+\label{functions:id26}
 In general, Python code is a sequence of statements. A simple statement is a single line that doesn't end in a colon. A compound statement is so called because it is composed of other statements (simple and compound). Compound statements typically span multiple lines and start with a one-line header ending in a colon, which identifies the type of statement. Together, a header and an indented suite of statements is called a clause. A compound statement consists of one or more clauses:
 \begin{description}
 \item[{\textless{}header\textgreater{}:}] \leavevmode
@@ -1018,8 +1065,10 @@ This definition exposes the essential structure of a recursively defined sequenc
 The important consequence of this rule is that statements are executed in order, but later statements may never be reached, because of redirected control.
 
 Practical Guidance. When indenting a suite, all lines must be indented the same amount and in the same way (spaces, not tabs). Any variation in indentation will cause an error.
-1.5.3   Defining Functions II: Local Assignment
 
+
+\section{関数の定義II：局所代入}
+\label{functions:ii}
 Originally, we stated that the body of a user-defined function consisted only of a return statement with a single return expression. In fact, functions can define a sequence of operations that extends beyond a single expression. The structure of compound Python statements naturally allows us to extend our concept of a function body to multiple statements.
 
 Whenever a user-defined function is applied, the sequence of clauses in the suite of its definition is executed in a local environment. A return statement redirects control: the process of function application terminates whenever the first return statement is executed, and the value of the return expression is the returned value of the function being applied.
@@ -1046,8 +1095,10 @@ Of course, the percent\_difference function could be written as a single express
 So far, local assignment hasn't increased the expressive power of our function definitions. It will do so, when combined with the control statements below. In addition, local assignment also plays a critical role in clarifying the meaning of complex expressions by assigning names to intermediate quantities.
 
 New environment Feature: Local assignment.
-1.5.4   Conditional Statements
 
+
+\section{状態文}
+\label{functions:id27}
 Python has a built-in function for computing absolute values.
 
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -1153,8 +1204,10 @@ Evaluate \textless{}exp\textgreater{}; The value is True if the result is a fals
 \end{quote}
 
 These values, rules, and operators provide us with a way to combine the results of tests. Functions that perform tests and return boolean values typically begin with is, not followed by an underscore (e.g., isfinite, isdigit, isinstance, etc.).
-1.5.5   Iteration
 
+
+\section{イテレーション}
+\label{functions:id28}
 In addition to selecting which statements to execute, control statements are used to express repetition. If each line of code we wrote were only executed once, programming would be a very unproductive exercise. Only through repeated execution of statements do we unlock the potential of computers to make us powerful. We have already seen one form of repetition: a function can be applied many times, although it is only defined once. Iterative control structures are another mechanism for executing the same statements many times.
 
 Consider the sequence of Fibonacci numbers, in which each number is the sum of the preceding two:
@@ -1204,8 +1257,10 @@ In step 2, the entire suite of the while clause is executed before the header ex
 In order to prevent the suite of a while clause from being executed indefinitely, the suite should always change the state of the environment in each pass.
 
 A while statement that does not terminate is called an infinite loop. Press \textless{}Control\textgreater{}-C to force Python to stop looping.
-1.5.6   Practical Guidance: Testing
 
+
+\section{実践的手引き：テスト}
+\label{functions:id29}
 Testing a function is the act of verifying that the function's behavior matches expectations. Our language of functions is now sufficiently complex that we need to start testing our implementations.
 
 A test is a mechanism for systematically performing this verification. Tests typically take the form of another function that contains one or more sample calls to the function being tested. The returned value is then verified against an expected result. Unlike most functions, which are meant to be general, tests involve selecting and validating calls with specific argument values. Tests also serve as documentation: they demonstrate how to call a function, and what argument values are appropriate.
@@ -1262,8 +1317,10 @@ When writing Python in files, all doctests in a file can be run by starting Pyth
 python3 -m doctest \textless{}python\_source\_file\textgreater{}
 
 The key to effective testing is to write (and run) tests immediately after (or even before) implementing new functions. A test that applies a single function is called a unit test. Exhaustive unit testing is a hallmark of good program design.
-1.6   Higher-Order Functions
 
+
+\section{高階関数}
+\label{functions:id30}
 We have seen that functions are, in effect, abstractions that describe compound operations independent of the particular values of their arguments. In square,
 
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -1285,8 +1342,10 @@ and never mentioning square explicitly. This practice would suffice for simple c
 As we will see in the following examples, there are common programming patterns that recur in code, but are used with a number of different functions. These patterns can also be abstracted, by giving them names.
 
 To express certain general patterns as named concepts, we will need to construct functions that can accept other functions as arguments or return functions as values. Functions that manipulate functions are called higher-order functions. This section shows how higher-order functions can serve as powerful abstraction mechanisms, vastly increasing the expressive power of our language.
-1.6.1   Functions as Arguments
 
+
+\section{引数としての関数}
+\label{functions:id31}
 Consider the following three functions, which all compute summations. The first, sum\_naturals, computes the sum of natural numbers up to n:
 
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -1421,8 +1480,9 @@ We can also define pi\_sum piece by piece, using our summation abstraction to co
 \PYG{g+go}{3.1415906535898936}
 \end{Verbatim}
 
-1.6.2   Functions as General Methods
 
+\section{一般メソッドとしての関数}
+\label{functions:id32}
 We introduced user-defined functions as a mechanism for abstracting patterns of numerical operations so as to make them independent of the particular numbers involved. With higher-order functions, we begin to see a more powerful kind of abstraction: some functions express general methods of computation, independent of the particular functions they call.
 
 Despite this conceptual extension of what a function means, our environment model of how to evaluate a call expression extends gracefully to the case of higher-order functions, without change. When a user-defined function is applied to some arguments, the formal parameters are bound to the values of those arguments (which may be functions) in a new local frame.
@@ -1496,8 +1556,10 @@ As always, our new general method iter\_improve needs a test to check its correc
 New environment Feature: Higher-order functions.
 
 Extra for experts. We left out a step in the justification of our test. For what range of tolerance values e can you prove that if near(x, square, successor) is true with tolerance value e, then approx\_eq(phi, x) is true with the same tolerance?
-1.6.3   Defining Functions III: Nested Definitions
 
+
+\section{関数定義III：入れ子になった定義}
+\label{functions:iii}
 The above examples demonstrate how the ability to pass functions as arguments significantly enhances the expressive power of our programming language. Each general concept or equation maps onto its own short function. One negative consequence of this approach to programming is that the global frame becomes cluttered with names of small functions. Another problem is that we are constrained by particular function signatures: the update argument to iter\_improve must take exactly one argument. In Python, nested function definitions address both of these problems, but require us to amend our environment model slightly.
 
 Let's consider a new problem: computing the square root of a number. Repeated application of the following update converges to the square root of x:
@@ -1559,8 +1621,10 @@ A local function can access the environment of the enclosing function. This is b
 The update function carries with it some data: the values referenced in the environment in which it was defined. Because they enclose information in this way, locally defined functions are often called closures.
 
 New environment Feature: Local function definition.
-1.6.4   Functions as Returned Values
 
+
+\section{戻り値としての関数}
+\label{functions:id33}
 We can achieve even more expressive power in our programs by creating functions whose returned values are themselves functions. An important feature of lexically scoped programming languages is that locally defined functions keep their associated environment when they are returned. The following example illustrates the utility of this feature.
 
 With many simple functions defined, function composition is a natural method of combination to include in our programming language. That is, given two functions f(x) and g(x), we might want to define h(x) = f(g(x)). We can define function composition using our existing tools:
@@ -1581,8 +1645,10 @@ With many simple functions defined, function composition is a natural method of 
 The 1 in compose1 indicates that the composed functions and returned result all take 1 argument. This naming convention isn't enforced by the interpreter; the 1 is just part of the function name.
 
 At this point, we begin to observe the benefits of our investment in a rich model of computation. No modifications to our environment model are required to support our ability to return functions in this way.
-1.6.5   Lambda Expressions
 
+
+\section{ラムダ式}
+\label{functions:id34}
 So far, every time we want to define a new function, we need to give it a name. But for other types of expressions, we don’t need to associate intermediate products with a name. That is, we can compute a*b + c*d without having to name the subexpressions a*b or c*d, or the full expression. In Python, we can create function values on the fly using lambda expressions, which evaluate to unnamed functions. A lambda expression evaluates to a function that has a single return expression as its body. Assignment and control statements are not allowed.
 
 Lambda expressions are limited: They are only useful for simple, one-line functions that evaluate and return a single expression. In those special cases where they apply, lambda expressions can be quite expressive.
@@ -1699,8 +1765,10 @@ Finally, we can define the find\_root function in terms of newton\_update, our i
 \end{Verbatim}
 
 As you experiment with Newton's method, be aware that it will not always converge. The initial guess of iter\_improve must be sufficiently close to the root, and various conditions about the function must be met. Despite this shortcoming, Newton's method is a powerful general computational method for solving differentiable equations. In fact, very fast algorithms for logarithms and large integer division employ variants of the technique.
-1.6.7   Abstractions and First-Class Functions
 
+
+\section{抽象概念と第一級関数}
+\label{functions:id35}
 We began this section with the observation that user-defined functions are a crucial abstraction mechanism, because they permit us to express general methods of computing as explicit elements in our programming language. Now we've seen how higher-order functions permit us to manipulate these general methods to create further abstractions.
 
 As programmers, we should be alert to opportunities to identify the underlying abstractions in our programs, to build upon them, and generalize them to create more powerful abstractions. This is not to say that one should always write programs in the most abstract way possible; expert programmers know how to choose the level of abstraction appropriate to their task. But it is important to be able to think in terms of these abstractions, so that we can be ready to apply them in new contexts. The significance of higher-order functions is that they enable us to represent these abstractions explicitly as elements in our programming language, so that they can be handled just like other computational elements.
@@ -1715,8 +1783,10 @@ They may be included in data structures.
 \end{quote}
 
 Python awards functions full first-class status, and the resulting gain in expressive power is enormous. Control structures, on the other hand, do not: you cannot pass if to a function the way you can sum.
-1.6.8   Function Decorators
 
+
+\section{関数デコレータ}
+\label{functions:id36}
 Python provides special syntax to apply higher-order functions as part of executing a def statement, called a decorator. Perhaps the most common example is a trace.
 
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -1755,61 +1825,8 @@ In the projects for this course, decorators are used for tracing, as well as sel
 Extra for experts. The actual rule is that the decorator symbol @ may be followed by an expression (@trace1 is just a simple expression consisting of a single name). Any expression producing a suitable value is allowed. For example, with a suitable definition, you could define a decorator check\_range so that decorating a function definition with @check\_range(1, 10) would cause the function's results to be checked to make sure they are integers between 1 and 10. The call check\_range(1,10) would return a function that would then be applied to the newly defined function before it is bound to the name in the def statement. A short tutorial on decorators by Ariel Ortiz gives further examples for interested students.
 
 
-\chapter{Chapter 2: Building Abstractions with Objects}
-\label{objects:chapter-2-building-abstractions-with-objects}\label{objects::doc}
-Contents
-\begin{quote}
-\begin{description}
-\item[{2.1   Introduction}] \leavevmode
-2.1.1   The Object Metaphor
-2.1.2   Native Data Types
-
-\item[{2.2   Data Abstraction}] \leavevmode
-2.2.1   Example: Arithmetic on Rational Numbers
-2.2.2   Tuples
-2.2.3   Abstraction Barriers
-2.2.4   The Properties of Data
-
-\item[{2.3   Sequences}] \leavevmode
-2.3.1   Nested Pairs
-2.3.2   Recursive Lists
-2.3.3   Tuples II
-2.3.4   Sequence Iteration
-2.3.5   Sequence Abstraction
-2.3.6   Strings
-2.3.7   Conventional Interfaces
-
-\item[{2.4   Mutable Data}] \leavevmode
-2.4.1   Local State
-2.4.2   The Benefits of Non-Local Assignment
-2.4.3   The Cost of Non-Local Assignment
-2.4.4   Lists
-2.4.5   Dictionaries
-2.4.6   Example: Propagating Constraints
-
-\item[{2.5   Object-Oriented Programming}] \leavevmode
-2.5.1   Objects and Classes
-2.5.2   Defining Classes
-2.5.3   Message Passing and Dot Expressions
-2.5.4   Class Attributes
-2.5.5   Inheritance
-2.5.6   Using Inheritance
-2.5.7   Multiple Inheritance
-2.5.8   The Role of Objects
-
-\item[{2.6   Implementing Classes and Objects}] \leavevmode
-2.6.1   Instances
-2.6.2   Classes
-2.6.3   Using Implemented Objects
-
-\item[{2.7   Generic Operations}] \leavevmode
-2.7.1   String Conversion
-2.7.2   Multiple Representations
-2.7.3   Generic Functions
-
-\end{description}
-\end{quote}
-
+\chapter{第二章：オブジェクトを用いた抽象概念の構築}
+\label{objects::doc}\label{objects:id1}
 2.1   Introduction
 
 We concentrated in Chapter 1 on computational processes and on the role of functions in program design. We saw how to use primitive data (numbers) and primitive operations (arithmetic operations), how to form compound functions through composition and control, and how to create functional abstractions by giving names to processes. We also saw that higher-order functions enhance the power of our language by enabling us to manipulate, and thereby to reason, in terms of general methods of computation. This is much of the essence of programming.
@@ -4407,43 +4424,9 @@ Despite its advantages, coercion does have potential drawbacks. For one, coercio
 Some programming languages have automatic coercion systems built in. In fact, early versions of Python had a \_\_coerce\_\_ special method on objects. In the end, the complexity of the built-in coercion system did not justify its use, and so it was removed. Instead, particular operators apply coercion to their arguments as needed. Operators are implemented as method calls on user defined types using special methods like \_\_add\_\_ and \_\_mul\_\_. It is left up to you, the user, to decide whether to employ type dispatching, data-directed programming, message passing, or coercion in order to implement generic functions in your programs.
 
 
-\chapter{Chapter 3: The Structure and Interpretation of Computer Programs}
-\label{interpretation::doc}\label{interpretation:chapter-3-the-structure-and-interpretation-of-computer-programs}
+\chapter{第三章：計算機プログラムの構造と解釈}
+\label{interpretation::doc}\label{interpretation:id1}
 Contents
-\begin{quote}
-\begin{description}
-\item[{3.1   Introduction}] \leavevmode
-3.1.1   Programming Languages
-
-\item[{3.2   Functions and the Processes They Generate}] \leavevmode
-3.2.1   Recursive Functions
-3.2.2   The Anatomy of Recursive Functions
-3.2.3   Tree Recursion
-3.2.4   Example: Counting Change
-3.2.5   Orders of Growth
-3.2.6   Example: Exponentiation
-
-\item[{3.3   Recursive Data Structures}] \leavevmode
-3.3.1   Processing Recursive Lists
-3.3.2   Hierarchical Structures
-3.3.3   Sets
-
-\item[{3.4   Exceptions}] \leavevmode
-3.4.1   Exception Objects
-
-\item[{3.5   Interpreters for Languages with Combination}] \leavevmode
-3.5.1   Calculator
-3.5.2   Parsing
-
-\item[{3.6   Interpreters for Languages with Abstraction}] \leavevmode
-3.6.1   The Scheme Language
-3.6.2   The Logo Language
-3.6.3   Structure
-3.6.4   Environments
-3.6.5   Data as Programs
-
-\end{description}
-\end{quote}
 
 3.1   Introduction
 
@@ -6642,32 +6625,8 @@ and
 both return the same result. Evaluating expressions that are constructed as a part of execution is a common and powerful feature in dynamic programming languages. In few languages is this practice as common as in Logo, but the ability to construct and evaluate expressions during the course of execution of a program can prove to be a valuable tool for any programmer.
 
 
-\chapter{Chapter 4: Distributed and Parallel Computing}
-\label{communication:chapter-4-distributed-and-parallel-computing}\label{communication::doc}
-Contents
-\begin{quote}
-
-4.1   Introduction
-4.2   Distributed Computing
-\begin{quote}
-
-4.2.1   Client/Server Systems
-4.2.2   Peer-to-peer Systems
-4.2.3   Modularity
-4.2.4   Message Passing
-4.2.5   Messages on the World Wide Web
-\end{quote}
-\begin{description}
-\item[{4.3   Parallel Computing}] \leavevmode
-4.3.1   The Problem with Shared State
-4.3.2   Correctness in Parallel Computation
-4.3.3   Protecting Shared State: Locks and Semaphores
-4.3.4   Staying Synchronized: Condition variables
-4.3.5   Deadlock
-
-\end{description}
-\end{quote}
-
+\chapter{第四章：分散・並行コンピューティング}
+\label{communication::doc}\label{communication:id1}
 4.1   Introduction
 
 So far, we have focused on how to create, interpret, and execute programs. In Chapter 1, we learned to use functions as a means for combination and abstraction. Chapter 2 showed us how to represent data and manipulate it with data structures and objects, and introduced us to the concept of data abstraction. In Chapter 3, we learned how computer programs are interpreted and executed. The result is that we understand how to design programs for a single processor to run.
@@ -7120,30 +7079,8 @@ wait                        wait
 the resulting situation is a deadlock. P1 and P2 are each holding on to one lock, but they need both in order to proceed. P1 is waiting for P2 to release y\_lock, and P2 is waiting for P1 to release x\_lock. As a result, neither can proceed.
 
 
-\chapter{Chapter 5: Sequences and Coroutines}
-\label{streams:chapter-5-sequences-and-coroutines}\label{streams::doc}
-Contents
-\begin{quote}
-
-5.1   Introduction
-5.2   Implicit Sequences
-\begin{quote}
-
-5.2.1   Python Iterators
-5.2.2   For Statements
-5.2.3   Generators and Yield Statements
-5.2.4   Iterables
-5.2.5   Streams
-\end{quote}
-\begin{description}
-\item[{5.3   Coroutines}] \leavevmode
-5.3.1   Python Coroutines
-5.3.2   Produce, Filter, and Consume
-5.3.3   Multitasking
-
-\end{description}
-\end{quote}
-
+\chapter{第五章：シーケンスとコルーチン}
+\label{streams::doc}\label{streams:id1}
 5.1   Introduction
 
 In this chapter, we continue our discussion of real-world applications by developing new tools to process sequential data. In Chapter 2, we introduced a sequence interface, implemented in Python by built-in data types such as tuple and list. Sequences supported two operations: querying their length and accessing an element by index. In Chapter 3, we developed a user-defined implementations of the sequence interface, the Rlist class for representing recursive lists. These sequence types proved effective for representing and accessing a wide variety of sequential datasets.
