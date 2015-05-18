@@ -1,0 +1,1350 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>第一章：関数を用いた抽象概念の構築 &mdash; SICP in Python Japanese Edition 2015.04.30 ドキュメント</title>
+    
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2015.04.30',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="top" title="SICP in Python Japanese Edition 2015.04.30 ドキュメント" href="index.html" />
+    <link rel="next" title="第二章：オブジェクトを用いた抽象概念の構築" href="2.objects.html" />
+    <link rel="prev" title="Welcome to SICP in Python Japanese Edition’s documentation!" href="index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="2.objects.html" title="第二章：オブジェクトを用いた抽象概念の構築"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to SICP in Python Japanese Edition’s documentation!"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">SICP in Python Japanese Edition 2015.04.30 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">第一章：関数を用いた抽象概念の構築</a><ul>
+<li><a class="reference internal" href="#id2">導入</a></li>
+<li><a class="reference internal" href="#python">Pythonでのプログラミング</a></li>
+<li><a class="reference internal" href="#python-3">Python 3のインストール</a></li>
+<li><a class="reference internal" href="#id3">対話的セッション</a></li>
+<li><a class="reference internal" href="#id4">最初の例題</a></li>
+<li><a class="reference internal" href="#id5">実践的手引き:エラー</a></li>
+<li><a class="reference internal" href="#id6">プログラミングの要素</a></li>
+<li><a class="reference internal" href="#id7">式</a></li>
+<li><a class="reference internal" href="#id8">式の呼び出し</a></li>
+<li><a class="reference internal" href="#id9">ライブラリ関数のインポート</a></li>
+<li><a class="reference internal" href="#id10">名前と環境</a></li>
+<li><a class="reference internal" href="#id11">入れ子になった式の評価</a></li>
+<li><a class="reference internal" href="#id12">関数ダイアグラム</a></li>
+<li><a class="reference internal" href="#id13">新しい関数を定義する</a></li>
+<li><a class="reference internal" href="#id14">環境</a></li>
+<li><a class="reference internal" href="#id15">ユーザーが定義した関数の呼び出し</a></li>
+<li><a class="reference internal" href="#id16">例題：ユーザーが定義した関数の呼び出し</a></li>
+<li><a class="reference internal" href="#id17">局所的名前</a></li>
+<li><a class="reference internal" href="#id18">実践的手引き：名前の選び方</a></li>
+<li><a class="reference internal" href="#id19">抽象概念としての関数</a></li>
+<li><a class="reference internal" href="#id20">オペレーター</a></li>
+<li><a class="reference internal" href="#id21">実践的手引き：関数の芸術</a></li>
+<li><a class="reference internal" href="#id22">ドックストリング</a></li>
+<li><a class="reference internal" href="#id23">デフォルトの引数値</a></li>
+<li><a class="reference internal" href="#id24">制御</a></li>
+<li><a class="reference internal" href="#id25">文</a></li>
+<li><a class="reference internal" href="#id26">複文</a></li>
+<li><a class="reference internal" href="#ii">関数の定義II：局所代入</a></li>
+<li><a class="reference internal" href="#id27">状態文</a></li>
+<li><a class="reference internal" href="#id28">イテレーション</a></li>
+<li><a class="reference internal" href="#id29">実践的手引き：テスト</a></li>
+<li><a class="reference internal" href="#id30">高階関数</a></li>
+<li><a class="reference internal" href="#id31">引数としての関数</a></li>
+<li><a class="reference internal" href="#id32">一般メソッドとしての関数</a></li>
+<li><a class="reference internal" href="#iii">関数定義III：入れ子になった定義</a></li>
+<li><a class="reference internal" href="#id33">戻り値としての関数</a></li>
+<li><a class="reference internal" href="#id34">ラムダ式</a></li>
+<li><a class="reference internal" href="#id35">抽象概念と第一級関数</a></li>
+<li><a class="reference internal" href="#id36">関数デコレータ</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="index.html"
+                        title="前の章へ">Welcome to SICP in Python Japanese Edition&#8217;s documentation!</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="2.objects.html"
+                        title="次の章へ">第二章：オブジェクトを用いた抽象概念の構築</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/1.functions.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>第一章：関数を用いた抽象概念の構築<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>原文: <a class="reference external" href="http://www-inst.eecs.berkeley.edu/~cs61a/sp12/book/functions.html">http://www-inst.eecs.berkeley.edu/~cs61a/sp12/book/functions.html</a></p>
+<div class="section" id="id2">
+<h2>導入<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>コンピューターサイエンスは極めて幅の広い学問分野である。分散システム、人工知能、ロボット工学、グラフィックス、サイバーセキュリティ、科学技術計算、コンピューターアーキテクチャ、およびそれらから派生する分野は、新たな技術や発見によって毎年拡大している。コンピューターサイエンスのこの急速な発展により、人間の生活においてコンピューターサイエンスが関わらない分野はほとんど無くなってしまった。広告、通信、科学、芸術、娯楽、そして政治に至るまで全てが、コンピューターサイエンスの領域として再発明されてしまった。</p>
+<p>コンピューターサイエンスのこの驚くべき生産性は、華麗で強力ないくつかのアイデアを基礎としているからこそ為し得たのである。全ての計算は、情報を表現することと、情報を処理する論理と、論理の複雑さを織りなす抽象概念を設計することから始まっている。これらの基礎を習得するために我々は、コンピューターが如何にプログラムを解釈し計算プロセスを実行するか、正確に理解しなければならない。</p>
+<p>カリフォルニア大学バークレー校では長い間、これらの基礎的なアイデアを教えるために、古典的教科書である「計算機プログラムの構造と解釈(SICP)(ハロルド・エイブルソン、ジェラルド・ジェイ・サスマン、ジュリー・サスマン 共著)」を用いてきた。ありがたいことに、原著者たちが上記の本に再利用可能なライセンスを認めている。そのため、この講義メモを作成するにあたって大いに参考にさせて頂いた。</p>
+<p>我々の知的な旅の同行にあたり、乗客は予備知識を必要としないし、また必要のないものだと我々は考えている。</p>
+<blockquote>
+<div><p>我々は計算プロセスという概念を学習する予定である。計算プロセスとは計算機における抽象概念である。計算プロセスが発達していくと、データと呼ばれる他の抽象概念を操作することがことが分かるだろう。計算プロセスの発達は、プログラムと呼ばれる規則のパターンによって方向づけられている。人間は計算プロセスに指示を与えるためにプログラムを書く。実際、我々は呪文を唱えることによって、コンピューターの魂を呼び出しているのだ。</p>
+<p>計算プロセスを降臨させるために我々が使うプログラムは、まるで魔術師の呪文のようだ。呪文は記号表現を用いて注意深く構築されており、我々のプロセスが果たして欲しい処理を記述するために秘伝の深遠なプログラミング言語を使っている。</p>
+<p>計算プロセスは、正確にコンピューターが動作するならば、正確かつ厳密にプログラムを実行する。従って、見習いの魔術師のように、未熟なプログラマーは研鑽に励み、計算プロセスが呼び出される手順を理解し、対処しなければならない。</p>
+<blockquote>
+<div>&#8211;エイブルソン&amp;サスマン, SICP(1993)</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="python">
+<h2>Pythonでのプログラミング<a class="headerlink" href="#python" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8211; 言語とはあなたが慣れ親しんだように学ぶものではない</dt>
+<dd>&#8211; アリカ オークレント</dd>
+</dl>
+</div></blockquote>
+<p>手続きを、計算機にも分かるように定義するために、我々はプログラミング言語を必要とする。いや、プログラミング言語とはむしろ、様々な人間とコンピューターが、手続きをしっかり理解するために必要とするものなのかもしれない。このコースでは、プログラミング言語Pythonを学習していく。</p>
+<p>Pythonは、今や幅広く使われている言語であり、様々な仕事から求人が出されているほどである。Webプログラマ、ゲームエンジニア、科学者、研究者、さらには新しいプログラミング言語の開発デザイナまで。あなたがPythonを学び始めたその時から、あなたはこれら何百万人もの強力な開発者コミュニティの一員なのだ。開発者コミュニティは極めて重要な組織である。メンバーはお互いに、問題の解決を図ったり、コードとノウハウの共有をしたり、協力してソフトウェアや道具を作りあげていく。参加したメンバーは、その貢献に応じて、しばしば名声や世界的な評価を得ていく。もしかするとあなたもいつの日か、エリートPythonista(訳註:Pythonを使う人のことをパイソニスタと呼ぶ)として名を挙げているかもしれない。</p>
+<p>Pythonそのものは、巨大なボランティアコミュニティの成果物であり、彼らは自身たちの多種多様な成果に誇りを持っている。Pythonという言語は、1980年代後半にGuido van Rossum(訳註:グイド・ヴァン・ロッサム、GvRとも書く)によって創案され、実装された。彼の書いた「Python 3 Tutorial」の最初の章では、なぜPythonが数多ある言語の中から今日の人気を勝ち取ったのかが記してある。</p>
+<p>Pythonは教育用言語として優れている。なぜなら、その歴史を振り返っても、Pythonの開発者はPythonコードが人間にとって理解しやすいことを重視しているからだ。その上、コードの美しさ、簡潔さ、可読性の基礎としてZen of Python(Pythonの禅)の精神を用いて強化している。Pythonはこのコースに特にふさわしい。というのも、Pythonの持つ幅広い機能は、我々がこれから探ろうとしている多種多様なプログラミングスタイルをサポー
+トしているからだ。Pythonでのプログラミングに決まった一つのやり方というものは無いが、開発者コミュニティの中で共有されている約束事というものがある。その約束事が、プログラムを読んだり、理解したり、既存のプログラムを拡張するのを助けてくれる。そうして、Pythonが持つ素晴らしい柔軟性と理解のしやすさが組み合わさることで、学生が様々なプログラミングパラダイムを探り、そこで得た新たな知識を多数の進行中のプロジ
+ェクトに応用することを助けてくれる。</p>
+<p>この一連の講義メモは、抽象化されたデザインと厳格な計算モデルを応用した技術を紹介すると共に、Pythonの機能を解説することで、SICPの精神を守り伝えていくことを狙いとしている。加えて、この講義メモは、いくつかの進んだ言語機能と図解した例題を含む、Pythonプログラミングへの実践的導入書となるだろう。このコースを進めていけばきっと、あなたは自然とPythonを学ぶことが出来る。</p>
+<p>しかしながら、Pythonは多くの機能を備えたリッチな言語であるため、我々がコンピューターサイエンスの基礎的な概念を学ぶにつれて、その機能をじっくりと段階的に説明していくことにする。Pythonの機能を一気に網羅的に学習したいという意欲的な学生には、Mark Pilgrimの書いたDive Into Python 3をオススメする。これはオンラインで無料で読むことが出来る。この本の目的はこのコースの目的とは異なっているが、Pythonを使う上で非常に有用な実用的な情報を含んでいる。注意すべきこととして、この講義メモと異なり、Dive Into Python 3は読者が何かしらのプログラミングの経験があることを想定している。</p>
+<p>Pythonプログラミングを始める最良の方法は直接インタプリタを触ってみることだ。このセクションではPython 3のインストール方法と、インタプリタを用いた対話環境の初期設定と、プログラミングの始め方を説明している。</p>
+</div>
+<div class="section" id="python-3">
+<h2>Python 3のインストール<a class="headerlink" href="#python-3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>全ての優れたソフトウェアと同様に、Pythonもまた、いくつかのバージョンがある。このコースでは最新の安定板であるPython 3(執筆時はPython 3.2)を用いることにする。多くのコンピューターでは古くなったバージョンのPythonが既にインストールされているが、このコースでは必要ない。あなたはどんなコンピューターを用いてもよいが、Python 3がインストールされている前提で話を進める。心配は要らない、Pythonは無料である。</p>
+<p>Dive Into Python 3では主要なプラットフォームでのインストール手順が記されている。これらの手順はPython 3.1で書かれているが、あなたがインストールするときはPython 3.2の方が良いだろう(このコースにおいては大した違いではないけれど)。カリフォルニア大学バークレー校電気電子工学及びコンピューターサイエンス学部(UCB EECS)に備わっている教育用マシンには、既にPython 3.2がインストールされている。</p>
+</div>
+<div class="section" id="id3">
+<h2>対話的セッション<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Pythonの対話的セッションにおいては、あなたは何かしらのコードをプロンプト</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>の後に入力することになる。Pythonインタプリタは入力された事柄を読み取って評価し、様々なコマンドを計算する。</p>
+<p>対話的セッションを開始するにはいくつかの方法がある。その方法はそれぞれ特徴があり異なっている。とりあえず全ての方法を試してみて、好みの方法を見つけて欲しい。以下の方法は全て同じインタプリタを使っている。</p>
+<blockquote>
+<div><p>・Python 3を走らせるために最も単純で広く使われている方法は、ターミナルのプロンプトでpython3と入力することである(Mac/Unix/Linux)。Windowsの場合はPython 3アプリケーションを開くことである。</p>
+<p>・上の方法よりユーザーフレンドリな方法は、Idle 3(idle3)と呼ばれるアプリケーションを起動することである。Idleは書いたコードを色付けし(シンタックスハイライトと呼ぶ)、使い方のヒントを提示し、ソースコードのエラー部分に印を付けてくれる。IdleはいつもPythonに同梱されている。つまり、あなたは既にそれを使える状態にある。</p>
+<p>・Emacsエディタ内で対話的セッションをバッファとして走らせることが出来る。学習に多少のコストはかかるものの、Emacsはどんなプログラミング言語にとっても強力で万能なエディタである。使い始めるにはこの講座のEmacsチュートリアル(訳註:後述リンク)を読むと良い。</p>
+<div class="line-block">
+<div class="line">// 訳者註：UCB EECSのコースCS61A( <a class="reference external" href="http://cs61a.org">http://cs61a.org</a> )に、</div>
+<div class="line">// Emacs, SublimeText, Vimのチュートリアルがありました。</div>
+<div class="line">// お好みのものを使って下さい。</div>
+<div class="line">//</div>
+<div class="line">// Emacs</div>
+<div class="line">// <a class="reference external" href="http://cs61a.org/lab/emacs/">http://cs61a.org/lab/emacs/</a></div>
+<div class="line">//</div>
+<div class="line">// Sublime Text</div>
+<div class="line">// <a class="reference external" href="http://cs61a.org/lab/sublime/">http://cs61a.org/lab/sublime/</a></div>
+<div class="line">//</div>
+<div class="line">// Vim</div>
+<div class="line">// <a class="reference external" href="http://cs61a.org/lab/vim/">http://cs61a.org/lab/vim/</a></div>
+</div>
+</div></blockquote>
+<p>多くの場合、Pythonプロンプトは &gt;&gt;&gt; で表される。対話的セッションの開始に成功すると、それが表示される。この講義メモではプロンプトを用いて例を記述する。以下がその例だ。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p>使い方：各セッションでは、どんな入力があったかというヒストリを記録している。ヒストリにアクセスするためには、&lt;Control&gt;-P(前へ戻る)もしくは&lt;Control&gt;-N(次へ進む)を押す(訳註:Ctrlキーを押しながらPやNのキーを押す)。&lt;Control&gt;-Dでセッションを抜けることが出来る。その際、このヒストリも消えてしまう。</p>
+</div>
+<div class="section" id="id4">
+<h2>最初の例題<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><div class="line-block">
+<div class="line">And, as imagination bodies forth</div>
+<div class="line">The forms of things to unknown, and the poet&#8217;s pen</div>
+<div class="line">Turns them to shapes, and gives to airy nothing</div>
+<div class="line">A local habitation and a name.</div>
+</div>
+<blockquote>
+<div>―ウイリアム・シェイクスピア、真夏の夜の夢</div></blockquote>
+</div></blockquote>
+<p>Pythonの導入として、Pythonの言語機能をいくつか用いた例題から始めようと思う。次のセクションにおいては、我々はゼロから始めて、言語を一つ一つ積み上げていく。このセクションは実装予定の強力な言語機能の予習だと考えてほしい。</p>
+<p>Pythonは組み込み関数というものを持っている。組み込み関数とは、構文解析、グラフィック表示、インターネット経由でのコミュニケーションなど、様々な分野に共通する機能のサポートをするものである。</p>
+<p>Import文を用いて</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+</pre></div>
+</div>
+<p>と組み込み関数を読み込めば、インターネット上のデータにアクセスできるようになる。上の例では、urlopenと呼ばれる関数が利用できるようになる。urlopen関数は、インターネット上のモノの場所を示す、統一リソースロケータ(URL)内のコンテンツへのアクセスを可能にしてくれる。</p>
+<p><strong>文と式</strong></p>
+<p>Pythonのコードは文と式から成り立っている。もっと言えば、コンピュータープログラムというのは以下の二つの手順から成り立っている。</p>
+<blockquote>
+<div><p>1.何らかの値を計算する</p>
+<p>2.何らかのアクションを起こす</p>
+</div></blockquote>
+<p>文はアクションを記述する際に特に使われる。Pythonインタプリタが文を実行するとき、それに対応するアクションも実行される。一方、式は与えられた値を計算する際に特に用いられる。Pythonが式を評価するとき、Pythonは式の値を計算する。この章では何種類かの文と式を紹介する。</p>
+<p>次の代入文を見て欲しい。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">shakespeare</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://inst.eecs.berkeley.edu/~cs61a/fa11/shakespeare.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>これはshakespeareという変数に、後に続く式の値を代入している。この式ではurlopen関数をURLに適用している。URLの先には、ウイリアム・シェイクスピアの37の戯曲の全文を、単一のテキストファイルにまとめたものが置かれている。</p>
+<p><strong>関数</strong></p>
+<p>関数はデータを操作するロジックをひとかたまりにしたものである。Webアドレスはデータの一つであり、シェイクスピアの戯曲もまた然りである。前者が後者へと変換されるプロセスは複雑かもしれないが、我々は、単純な式だけを使ってそのプロセスを利用出来る。何故ならば、その複雑さは関数の中に閉じ込められているからだ。</p>
+<p>関数はこの章の主題である。
+ここで別の代入文を見てみよう。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">shakespeare</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>この文はwordsという変数に、シェイクスピアの戯曲に現れる単語の集合を代入している。シェイクスピアの戯曲に現れる単語の数は、重複なく数えると33,721語に達する。read、decode、splitといったコマンドの連なりは、それぞれ中間に出来る、コンピューターが扱うデータの操作をしている。つまり、データはURLを開いて読み取られ、そのデータを復号してテキストへ変換し、さらにテキストを単語へ分割している。そこで分割された全ての単語はsetという集合に収められる。</p>
+<p><strong>オブジェクト</strong></p>
+<p>集合はオブジェクトの一種であり、それは集合の共通部分を求めたり、や集合の元をテストしたりといった、集合の演算をサポートするオブジェクトである。オブジェクトは、データとデータを操作するロジックを継ぎ目なくまとめたものであり、それはデータやロジックの複雑さを隠してくれる。オブジェクトは第二章の主題である。</p>
+<p>次の式、</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">5</span> <span class="ow">and</span> <span class="n">w</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">words</span><span class="p">}</span>
+<span class="go">{&#39;madam&#39;, &#39;stink&#39;, &#39;leets&#39;, &#39;rever&#39;, &#39;drawer&#39;, &#39;stops&#39;, &#39;sessa&#39;,</span>
+<span class="go">&#39;repaid&#39;, &#39;speed&#39;, &#39;redder&#39;, &#39;devil&#39;, &#39;minim&#39;, &#39;spots&#39;, &#39;asses&#39;,</span>
+<span class="go">&#39;refer&#39;, &#39;lived&#39;, &#39;keels&#39;, &#39;diaper&#39;, &#39;sleek&#39;, &#39;steel&#39;, &#39;leper&#39;,</span>
+<span class="go">&#39;level&#39;, &#39;deeps&#39;, &#39;repel&#39;, &#39;reward&#39;, &#39;knits&#39;}</span>
+</pre></div>
+</div>
+<p>これは、シェイクスピアの戯曲の単語の集合を、前から評価した式と後ろから評価した式を組み合わせたものである。暗号めいた表記の w[::-1] は、単語の各文字を -1 と宣言することで後ろから順番に数え上げている。(::はデフォルトでは、最初から最後に向かって文字を順番に数え上げていく) 対話的セッションにあなたが式を入力するとき、Pythonは次の行にその式の値を表示します。</p>
+<p><strong>インタプリタ</strong></p>
+<p>組み合わせた式を評価する際には、予測可能な方法で式を判断する正確な手続きが必要となる。文と式を組み合わせて評価するような手続きを実装したプログラムは、インタプリタと呼ばれる。インタプリタの設計と実装は第三章の主題である。</p>
+<p>他のコンピュータープログラムと比較したとき、プログラミング言語のためのインタプリタは一般的にユニークである。Pythonはシェイクスピアや回文のためにデザインされた言語ではないことは予め伝えておこう。しかしながら、Pythonのその大きな柔軟性は、我々がほんの数行のコードで大量のテキストを処理することを許可している。</p>
+<p>最後になったが、我々は以下のような中心となる概念に関連する事柄を見ていく予定である。関数とオブジェクトであり、オブジェクトは関数であり、そしてインタプリタはそれら両方のインスタンスである。しかしながら、コードを組み立てていく中で、これらの概念と役割を明確に理解していくことは、プログラミングの神髄を理解していく上で重要なことである。</p>
+</div>
+<div class="section" id="id5">
+<h2>実践的手引き:エラー<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Pythonプロンプトはあなたの入力を待機している。たとえあなたがPythonの語彙や文法を十分に知らなくても、あなたが習熟するまで辛抱強く付き合ってくれる。コンピューターの性質はスタンフォード大学の入門コースで次のように説明されている。</p>
+<blockquote>
+<div>コンピューターの基本方程式： コンピューター ＝ 強力さ ＋ 愚かさ</div></blockquote>
+<p>コンピューターは非常に強力で、膨大な量のデータを瞬時に参照できる。コンピューターは、一つ一つは非常に単純な計算を、一秒間に数十億回も行う。</p>
+<p>また、コンピューターはビックリするほど頭が悪く、そして壊れやすい。コンピューターが行う操作は極めて厳格で単純で、そして機械的である。コンピューターには何か現実的な視点が欠けている...それは映画のHAL9000以外の何者でもない。If nothing else, you should not be intimidated by the computer as if it&#8217;s some sort of brain. It&#8217;s very mechanical underneath it all.</p>
+<blockquote>
+<div><p>Programming is about a person using their real insight to build something useful, constructed out of these teeny, simple little operations that the computer can do.</p>
+<blockquote>
+<div>—Francisco Cai and Nick Parlante, Stanford CS101</div></blockquote>
+</div></blockquote>
+<p>The rigidity of computers will immediately become apparent as you experiment with the Python interpreter: even the smallest spelling and formatting changes will cause unexpected outputs and errors.</p>
+<p>Learning to interpret errors and diagnose the cause of unexpected errors is called debugging. Some guiding principles of debugging are:</p>
+<blockquote>
+<div>Test incrementally: Every well-written program is composed of small, modular components that can be tested individually. Test everything you write as soon as possible to catch errors early and gain confidence in your components.
+Isolate errors: An error in the output of a compound program, expression, or statement can typically be attributed to a particular modular component. When trying to diagnose a problem, trace the error to the smallest fragment of code you can before trying to correct it.
+Check your assumptions: Interpreters do carry out your instructions to the letter &#8212; no more and no less. Their output is unexpected when the behavior of some code does not match what the programmer believes (or assumes) that behavior to be. Know your assumptions, then focus your debugging effort on verifying that your assumptions actually hold.
+Consult others: You are not alone! If you don&#8217;t understand an error message, ask a friend, instructor, or search engine. If you have isolated an error, but can&#8217;t figure out how to correct it, ask someone else to take a look. A lot of valuable programming knowledge is shared in the context of team problem solving.</div></blockquote>
+<p>Incremental testing, modular design, precise assumptions, and teamwork are themes that persist throughout this course. Hopefully, they will also persist throughout your computer science career.</p>
+</div>
+<div class="section" id="id6">
+<h2>プログラミングの要素<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>A programming language is more than just a means for instructing a computer to perform tasks. The language also serves as a framework within which we organize our ideas about processes. Programs serve to communicate those ideas among the members of a programming community. Thus, programs must be written for people to read, and only incidentally for machines to execute.</p>
+<p>When we describe a language, we should pay particular attention to the means that the language provides for combining simple ideas to form more complex ideas. Every powerful language has three mechanisms for accomplishing this:</p>
+<blockquote>
+<div>primitive expressions and statements, which represent the simplest building blocks that the language provides,
+means of combination, by which compound elements are built from simpler ones, and
+means of abstraction, by which compound elements can be named and manipulated as units.</div></blockquote>
+<p>In programming, we deal with two kinds of elements: functions and data. (Soon we will discover that they are really not so distinct.) Informally, data is stuff that we want to manipulate, and functions describe the rules for manipulating the data. Thus, any powerful programming language should be able to describe primitive data and primitive functions and should have methods for combining and abstracting both functions and data.</p>
+</div>
+<div class="section" id="id7">
+<h2>式<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Having experimented with the full Python interpreter, we now must start anew, methodically developing the Python language piece by piece. Be patient if the examples seem simplistic &#8212; more exciting material is soon to come.</p>
+<p>We begin with primitive expressions. One kind of primitive expression is a number. More precisely, the expression that you type consists of the numerals that represent the number in base 10.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">42</span>
+<span class="go">42</span>
+</pre></div>
+</div>
+<p>Expressions representing numbers may be combined with mathematical operators to form a compound expression, which the interpreter will evaluate:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; -1 - -1
+0
+&gt;&gt;&gt; 式
+==1/2 + 1/4 + 1/8 + 1/16 + 1/32 + 1/64 + 1/128
+0.9921875
+</pre></div>
+</div>
+<p>These mathematical expressions use infix notation, where the operator <cite>(e.g., +, -, *, or /)</cite> appears in between the operands (numbers). Python includes many ways to form compound expressions. Rather than attempt to enumerate them all immediately, we will introduce new expression forms as we go, along with the language features that they support.</p>
+</div>
+<div class="section" id="id8">
+<h2>式の呼び出し<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The most important kind of compound expression is a call expression, which applies a function to some arguments. Recall from algebra that the mathematical notion of a function is a mapping from some input arguments to an output value. For instance, the max function maps its inputs to a single output, which is the largest of the inputs. A function in Python is more than just an input-output mapping; it describes a computational process. However, the way in which Python expresses function application is the same as in mathematics.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">max</span><span class="p">(</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">9.5</span><span class="p">)</span>
+<span class="go">9.5</span>
+</pre></div>
+</div>
+<p>This call expression has subexpressions: the operator precedes parentheses, which enclose a comma-delimited list of operands. The operator must be a function. The operands can be any values; in this case they are numbers. When this call expression is evaluated, we say that the function max is called with arguments 7.5 and 9.5, and returns a value of 9.5.</p>
+<p>The order of the arguments in a call expression matters. For instance, the function pow raises its first argument to the power of its second argument.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">pow</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">10000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="go">1267650600228229401496703205376</span>
+</pre></div>
+</div>
+<p>Function notation has several advantages over the mathematical convention of infix notation. First, functions may take an arbitrary number of arguments:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<p>No ambiguity can arise, because the function name always precedes its arguments.</p>
+<p>Second, function notation extends in a straightforward way to nested expressions, where the elements are themselves compound expressions. In nested call expressions, unlike compound infix expressions, the structure of the nesting is entirely explicit in the parentheses.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">max</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="o">-</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">-2</span>
+</pre></div>
+</div>
+<p>There is no limit (in principle) to the depth of such nesting and to the overall complexity of the expressions that the Python interpreter can evaluate. However, humans quickly get confused by multi-level nesting. An important role for you as a programmer is to structure expressions so that they remain interpretable by yourself, your programming partners, and others who may read your code in the future.</p>
+<p>Finally, mathematical notation has a great variety of forms: multiplication appears between terms, exponents appear as superscripts, division as a horizontal bar, and a square root as a roof with slanted siding. Some of this notation is very hard to type! However, all of this complexity can be unified via the notation of call expressions. While Python supports common mathematical operators using infix notation (like + and -), any operator can be expressed as a function with a name.</p>
+</div>
+<div class="section" id="id9">
+<h2>ライブラリ関数のインポート<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Python defines a very large number of functions, including the operator functions mentioned in the preceding section, but does not make their names available by default, so as to avoid complete chaos. Instead, it organizes the functions and other quantities that it knows about into modules, which together comprise the Python Library. To use these elements, one imports them. For example, the math module provides a variety of familiar mathematical functions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">exp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sqrt</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
+<span class="go">16.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">2.718281828459045</span>
+</pre></div>
+</div>
+<p>and the operator module provides access to functions corresponding to infix operators:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span><span class="p">,</span> <span class="n">sub</span><span class="p">,</span> <span class="n">mul</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="go">42</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sub</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">mul</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">add</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">)))</span>
+<span class="go">16</span>
+</pre></div>
+</div>
+<p>An import statement designates a module name (e.g., operator or math), and then lists the named attributes of that module to import (e.g., sqrt or exp).</p>
+<p>The Python 3 Library Docs list the functions defined by each module, such as the math module. However, this documentation is written for developers who know the whole language well. For now, you may find that experimenting with a function tells you more about its behavior than reading the documemtation. As you become familiar with the Python language and vocabulary, this documentation will become a valuable reference source.</p>
+</div>
+<div class="section" id="id10">
+<h2>名前と環境<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>A critical aspect of a programming language is the means it provides for using names to refer to computational objects. If a value has been given a name, we say that the name binds to the value.</p>
+<p>In Python, we can establish new bindings using the assignment statement, which contains a name to the left of = and a value to the right:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">radius</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">radius</span>
+<span class="go">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">*</span> <span class="n">radius</span>
+<span class="go">20</span>
+</pre></div>
+</div>
+<p>Names are also bound via import statements.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pi</span> <span class="o">*</span> <span class="mi">71</span> <span class="o">/</span> <span class="mi">223</span>
+<span class="go">1.0002380197528042</span>
+</pre></div>
+</div>
+<p>We can also assign multiple values to multiple names in a single statement, where names and expressions are separated by commas.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">area</span><span class="p">,</span> <span class="n">circumference</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">area</span>
+<span class="go">314.1592653589793</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">circumference</span>
+<span class="go">62.83185307179586</span>
+</pre></div>
+</div>
+<p>The = symbol is called the assignment operator in Python (and many other languages). Assignment is Python&#8217;s simplest means of abstraction, for it allows us to use simple names to refer to the results of compound operations, such as the area computed above. In this way, complex programs are constructed by building, step by step, computational objects of increasing complexity.</p>
+<p>The possibility of binding names to values and later retrieving those values by name means that the interpreter must maintain some sort of memory that keeps track of the names, values, and bindings. This memory is called an environment.</p>
+<p>Names can also be bound to functions. For instance, the name max is bound to the max function we have been using. Functions, unlike numbers, are tricky to render as text, so Python prints an identifying description instead, when asked to print a function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">max</span>
+<span class="go">&lt;built-in function max&gt;</span>
+</pre></div>
+</div>
+<p>We can use assignment statements to give new names to existing functions.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">max</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span>
+<span class="go">&lt;built-in function max&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p>And successive assignment statements can rebind a name to a new value.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>In Python, the names bound via assignment are often called variable names because they can be bound to a variety of different values in the course of executing a program.</p>
+</div>
+<div class="section" id="id11">
+<h2>入れ子になった式の評価<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>One of our goals in this chapter is to isolate issues about thinking procedurally. As a case in point, let us consider that, in evaluating nested call expressions, the interpreter is itself following a procedure.</p>
+<p>To evaluate a call expression, Python will do the following:</p>
+<blockquote>
+<div>Evaluate the operator and operand subexpressions, then
+Apply the function that is the value of the operator subexpression to the arguments that are the values of the operand subexpressions.</div></blockquote>
+<p>Even this simple procedure illustrates some important points about processes in general. The first step dictates that in order to accomplish the evaluation process for a call expression we must first evaluate other expressions. Thus, the evaluation procedure is recursive in nature; that is, it includes, as one of its steps, the need to invoke the rule itself.</p>
+<p>For example, evaluating</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mul</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">mul</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)),</span> <span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="go">208</span>
+</pre></div>
+</div>
+<p>requires that this evaluation procedure be applied four times. If we draw each expression that we evaluate, we can visualize the hierarchical structure of this process.
+img/expression_tree.png</p>
+<p>This illustration is called an expression tree. In computer science, trees grow from the top down. The objects at each point in a tree are called nodes; in this case, they are expressions paired with their values.</p>
+<p>Evaluating its root, the full expression, requires first evaluating the branches that are its subexpressions. The leaf expressions (that is, nodes with no branches stemming from them) represent either functions or numbers. The interior nodes have two parts: the call expression to which our evaluation rule is applied, and the result of that expression. Viewing evaluation in terms of this tree, we can imagine that the values of the operands percolate upward, starting from the terminal nodes and then combining at higher and higher levels.</p>
+<p>Next, observe that the repeated application of the first step brings us to the point where we need to evaluate, not call expressions, but primitive expressions such as numerals (e.g., 2) and names (e.g., add). We take care of the primitive cases by stipulating that</p>
+<blockquote>
+<div>A numeral evaluates to the number it names,
+A name evaluates to the value associated with that name in the current environment.</div></blockquote>
+<p>Notice the important role of an environment in determining the meaning of the symbols in expressions. In Python, it is meaningless to speak of the value of an expression such as</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>without specifying any information about the environment that would provide a meaning for the name x (or even for the name add). Environments provide the context in which evaluation takes place, which plays an important role in our understanding of program execution.</p>
+<p>This evaluation procedure does not suffice to evaluate all Python code, only call expressions, numerals, and names. For instance, it does not handle assignment statements. Executing</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>does not return a value nor evaluate a function on some arguments, since the purpose of assignment is instead to bind a name to a value. In general, statements are not evaluated but executed; they do not produce a value but instead make some change. Each type of statement or expression has its own evaluation or execution procedure, which we will introduce incrementally as we proceed.</p>
+<p>A pedantic note: when we say that &#8220;a numeral evaluates to a number,&#8221; we actually mean that the Python interpreter evaluates a numeral to a number. It is the interpreter which endows meaning to the programming language. Given that the interpreter is a fixed program that always behaves consistently, we can loosely say that numerals (and expressions) themselves evaluate to values in the context of Python programs.</p>
+</div>
+<div class="section" id="id12">
+<h2>関数ダイアグラム<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>As we continue to develop a formal model of evaluation, we will find that diagramming the internal state of the interpreter helps us track the progress of our evaluation procedure. An essential part of these diagrams is a representation of a function.</p>
+<p>Pure functions. Functions have some input (their arguments) and return some output (the result of applying them). The built-in function</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>can be depicted as a small machine that takes input and produces output.
+img/function_abs.png</p>
+<p>The function abs is pure. Pure functions have the property that applying them has no effects beyond returning a value.</p>
+<p>Non-pure functions. In addition to returning a value, applying a non-pure function can generate side effects, which make some change to the state of the interpreter or computer. A common side effect is to generate additional output beyond the return value, using the print function.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">-2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">1 2 3</span>
+</pre></div>
+</div>
+<p>While print and abs may appear to be similar in these examples, they work in fundamentally different ways. The value that print returns is always None, a special Python value that represents nothing. The interactive Python interpreter does not automatically print the value None. In the case of print, the function itself is printing output as a side effect of being called.
+img/function_print.png</p>
+<p>A nested expression of calls to print highlights the non-pure character of the function.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="k">print</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="k">print</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="go">1</span>
+<span class="go">2</span>
+<span class="go">None None</span>
+</pre></div>
+</div>
+<p>If you find this output to be unexpected, draw an expression tree to clarify why evaluating this expression produces this peculiar output.</p>
+<p>Be careful with print! The fact that it returns None means that it should not be the expression in an assignment statement.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">two</span> <span class="o">=</span> <span class="k">print</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">two</span><span class="p">)</span>
+<span class="go">None</span>
+</pre></div>
+</div>
+<p>Signatures. Functions differ in the number of arguments that they are allowed to take. To track these requirements, we draw each function in a way that shows the function name and names of its arguments. The function abs takes only one argument called number; providing more or fewer will result in an error. The function print can take an arbitrary number of arguments, hence its rendering as print(...). A description of the arguments that a function can take is called the function&#8217;s signature.</p>
+</div>
+<div class="section" id="id13">
+<h2>新しい関数を定義する<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>We have identified in Python some of the elements that must appear in any powerful programming language:</p>
+<blockquote>
+<div>Numbers and arithmetic operations are built-in data and functions.
+Nested function application provides a means of combining operations.
+Binding names to values provides a limited means of abstraction.</div></blockquote>
+<p>Now we will learn about function definitions, a much more powerful abstraction technique by which a name can be bound to compound operation, which can then be referred to as a unit.</p>
+<p>We begin by examining how to express the idea of &#8220;squaring.&#8221; We might say, &#8220;To square something, multiply it by itself.&#8221; This is expressed in Python as</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="go">        return mul(x, x)</span>
+</pre></div>
+</div>
+<p>which defines a new function that has been given the name square. This user-defined function is not built into the interpreter. It represents the compound operation of multiplying something by itself. The x in this definition is called a formal parameter, which provides a name for the thing to be multiplied. The definition creates this user-defined function and associates it with the name square.</p>
+<p>Function definitions consist of a def statement that indicates a &lt;name&gt; and a list of named &lt;formal parameters&gt;, then a return statement, called the function body, that specifies the &lt;return expression&gt; of the function, which is an expression to be evaluated whenever the function is applied.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>def &lt;name&gt;(&lt;formal parameters&gt;):</dt>
+<dd>return &lt;return expression&gt;</dd>
+</dl>
+</div></blockquote>
+<p>The second line must be indented! Convention dictates that we indent with four spaces, rather than a tab. The return expression is not evaluated right away; it is stored as part of the newly defined function and evaluated only when the function is eventually applied. (Soon, we will see that the indented region can span multiple lines.)</p>
+<p>Having defined square, we can apply it with a call expression:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">square</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+<span class="go">441</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">square</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="go">49</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">square</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">81</span>
+</pre></div>
+</div>
+<p>We can also use square as a building block in defining other functions. For example, we can easily define a function sum_squares that, given any two numbers as arguments, returns the sum of their squares:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">sum_squares</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="go">        return add(square(x), square(y))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sum_squares</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">25</span>
+</pre></div>
+</div>
+<p>User-defined functions are used in exactly the same way as built-in functions. Indeed, one cannot tell from the definition of sum_squares whether square is built into the interpreter, imported from a module, or defined by the user.</p>
+</div>
+<div class="section" id="id14">
+<h2>環境<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Our subset of Python is now complex enough that the meaning of programs is non-obvious. What if a formal parameter has the same name as a built-in function? Can two functions share names without confusion? To resolve such questions, we must describe environments in more detail.</p>
+<p>An environment in which an expression is evaluated consists of a sequence of frames, depicted as boxes. Each frame contains bindings, which associate a name with its corresponding value. There is a single global frame that contains name bindings for all built-in functions (only abs and max are shown). We indicate the global frame with a globe symbol.
+img/global_frame.png</p>
+<p>Assignment and import statements add entries to the first frame of the current environment. So far, our environment consists only of the global frame.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tau</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span>
+</pre></div>
+</div>
+<p>img/global_frame_assignment.png</p>
+<p>A def statement also binds a name to the function created by the definition. The resulting environment after defining square appears below:
+img/global_frame_def.png</p>
+<p>These environment diagrams show the bindings of the current environment, along with the values (which are not part of any frame) to which names are bound. Notice that the name of a function is repeated, once in the frame, and once as part of the function itself. This repetition is intentional: many different names may refer to the same function, but that function itself has only one intrinsic name. However, looking up the value for a name in an environment only inspects name bindings. The intrinsic name of a function does not play a role in looking up names. In the example we saw earlier,</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">max</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span>
+<span class="go">&lt;built-in function max&gt;</span>
+</pre></div>
+</div>
+<p>The name max is the intrinsic name of the function, and that&#8217;s what you see printed as the value for f. In addition, both the names max and f are bound to that same function in the global environment.</p>
+<p>As we proceed to introduce additional features of Python, we will have to extend these diagrams. Every time we do, we will list the new features that our diagrams can express.</p>
+<p>New environment Features: Assignment and user-defined function definition.</p>
+</div>
+<div class="section" id="id15">
+<h2>ユーザーが定義した関数の呼び出し<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>To evaluate a call expression whose operator names a user-defined function, the Python interpreter follows a process similar to the one for evaluating expressions with a built-in operator function. That is, the interpreter evaluates the operand expressions, and then applies the named function to the resulting arguments.</p>
+<p>The act of applying a user-defined function introduces a second local frame, which is only accessible to that function. To apply a user-defined function to some arguments:</p>
+<blockquote>
+<div>Bind the arguments to the names of the function&#8217;s formal parameters in a new local frame.
+Evaluate the body of the function in the environment beginning at that frame and ending at the global frame.</div></blockquote>
+<p>The environment in which the body is evaluated consists of two frames: first the local frame that contains argument bindings, then the global frame that contains everything else. Each instance of a function application has its own independent local frame.
+img/evaluate_square.png</p>
+<p>This figure includes two different aspects of the Python interpreter: the current environment, and a part of the expression tree related to the current line of code being evaluated. We have depicted the evaluation of a call expression that has a user-defined function (in blue) as a two-part rounded rectangle. Dotted arrows indicate which environment is used to evaluate the expression in each part.</p>
+<blockquote>
+<div>The top half shows the call expression being evaluated. This call expression is not internal to any function, so it is evaluated in the global environment. Thus, any names within it (such as square) are looked up in the global frame.
+The bottom half shows the body of the square function. Its return expression is evaluated in the new environment introduced by step 1 above, which binds the name of square&#8217;s formal parameter x to the value of its argument, -2.</div></blockquote>
+<p>The order of frames in an environment affects the value returned by looking up a name in an expression. We stated previously that a name is evaluated to the value associated with that name in the current environment. We can now be more precise:</p>
+<blockquote>
+<div>A name evaluates to the value bound to that name in the earliest frame of the current environment in which that name is found.</div></blockquote>
+<p>Our conceptual framework of environments, names, and functions constitutes a model of evaluation; while some mechanical details are still unspecified (e.g., how a binding is implemented), our model does precisely and correctly describe how the interpreter evaluates call expressions. In Chapter 3 we shall see how this model can serve as a blueprint for implementing a working interpreter for a programming language.</p>
+<p>New environment Feature: Function application.</p>
+</div>
+<div class="section" id="id16">
+<h2>例題：ユーザーが定義した関数の呼び出し<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Let us again consider our two simple definitions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span><span class="p">,</span> <span class="n">mul</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="go">        return mul(x, x)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">sum_squares</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="go">        return add(square(x), square(y))</span>
+</pre></div>
+</div>
+<p>img/evaluate_sum_squares_0.png</p>
+<p>And the process that evaluates the following call expression:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sum_squares</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="go">169</span>
+</pre></div>
+</div>
+<p>Python first evaluates the name sum_squares, which is bound to a user-defined function in the global frame. The primitive numeric expressions 5 and 12 evaluate to the numbers they represent.</p>
+<p>Next, Python applies sum_squares, which introduces a local frame that binds x to 5 and y to 12.
+img/evaluate_sum_squares_1.png</p>
+<p>In this diagram, the local frame points to its successor, the global frame. All local frames must point to a predecessor, and these links define the sequence of frames that is the current environment.</p>
+<p>The body of sum_squares contains this call expression:</p>
+<blockquote>
+<div><blockquote>
+<div>add     (  square(x)  ,  square(y)  )</div></blockquote>
+<p>________     _________     _________</p>
+</div></blockquote>
+<p>&#8220;operator&#8221;   &#8220;operand 0&#8221;   &#8220;operand 1&#8221;</p>
+<p>All three subexpressions are evalauted in the current environment, which begins with the frame labeled sum_squares. The operator subexpression add is a name found in the global frame, bound to the built-in function for addition. The two operand subexpressions must be evaluated in turn, before addition is applied. Both operands are evaluated in the current environment beginning with the frame labeled sum_squares. In the following environment diagrams, we will call this frame A and replace arrows pointing to this frame with the label A as well.</p>
+<p>In operand 0, square names a user-defined function in the global frame, while x names the number 5 in the local frame. Python applies square to 5 by introducing yet another local frame that binds x to 5.
+img/evaluate_sum_squares_2.png</p>
+<p>Using this local frame, the body expression mul(x, x) evaluates to 25.</p>
+<p>Our evaluation procedure now turns to operand 1, for which y names the number 12. Python evaluates the body of square again, this time introducing yet another local environment frame that binds x to 12. Hence, operand 1 evaluates to 144.
+img/evaluate_sum_squares_3.png</p>
+<p>Finally, applying addition to the arguments 25 and 144 yields a final value for the body of sum_squares: 169.</p>
+<p>This figure, while complex, serves to illustrate many of the fundamental ideas we have developed so far. Names are bound to values, which spread across many local frames that all precede a single global frame that contains shared names. Expressions are tree-structured, and the environment must be augmented each time a subexpression contains a call to a user-defined function.</p>
+<p>All of this machinery exists to ensure that names resolve to the correct values at the correct points in the expression tree. This example illustrates why our model requires the complexity that we have introduced. All three local frames contain a binding for the name x, but that name is bound to different values in different frames. Local frames keep these names separate.</p>
+</div>
+<div class="section" id="id17">
+<h2>局所的名前<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>One detail of a function&#8217;s implementation that should not affect the function&#8217;s behavior is the implementer&#8217;s choice of names for the function&#8217;s formal parameters. Thus, the following functions should provide the same behavior:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="go">        return mul(x, x)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+<span class="go">        return mul(y, y)</span>
+</pre></div>
+</div>
+<p>This principle &#8211; that the meaning of a function should be independent of the parameter names chosen by its author &#8211; has important consequences for programming languages. The simplest consequence is that the parameter names of a function must remain local to the body of the function.</p>
+<p>If the parameters were not local to the bodies of their respective functions, then the parameter x in square could be confused with the parameter x in sum_squares. Critically, this is not the case: the binding for x in different local frames are unrelated. Our model of computation is carefully designed to ensure this independence.</p>
+<p>We say that the scope of a local name is limited to the body of the user-defined function that defines it. When a name is no longer accessible, it is out of scope. This scoping behavior isn&#8217;t a new fact about our model; it is a consequence of the way environments work.</p>
+</div>
+<div class="section" id="id18">
+<h2>実践的手引き：名前の選び方<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The interchangeabily of names does not imply that formal parameter names do not matter at all. To the contrary, well-chosen function and parameter names are essential for the human interpretability of function definitions!</p>
+<p>The following guidelines are adapted from the style guide for Python code, which serves as a guide for all (non-rebellious) Python programmers. A shared set of conventions smooths communication among members of a programming community. As a side effect of following these conventions, you will find that your code becomes more internally consistent.</p>
+<blockquote>
+<div>Function names should be lowercase, with words separated by underscores. Descriptive names are encouraged.
+Function names typically evoke operations applied to arguments by the interpreter (e.g., print, add, square) or the name of the quantity that results (e.g., max, abs, sum).
+Parameter names should be lowercase, with words separated by underscores. Single-word names are preferred.
+Parameter names should evoke the role of the parameter in the function, not just the type of value that is allowed.
+Single letter parameter names are acceptable when their role is obvious, but never use &#8220;l&#8221; (lowercase ell), &#8220;O&#8221; (capital oh), or &#8220;I&#8221; (capital i) to avoid confusion with numerals.</div></blockquote>
+<p>Review these guidelines periodically as you write programs, and soon your names will be delightfully Pythonic.</p>
+</div>
+<div class="section" id="id19">
+<h2>抽象概念としての関数<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Though it is very simple, sum_squares exemplifies the most powerful property of user-defined functions. The function sum_squares is defined in terms of the function square, but relies only on the relationship that square defines between its input arguments and its output values.</p>
+<p>We can write sum_squares without concerning ourselves with how to square a number. The details of how the square is computed can be suppressed, to be considered at a later time. Indeed, as far as sum_squares is concerned, square is not a particular function body, but rather an abstraction of a function, a so-called functional abstraction. At this level of abstraction, any function that computes the square is equally good.</p>
+<p>Thus, considering only the values they return, the following two functions for squaring a number should be indistinguishable. Each takes a numerical argument and produces the square of that number as the value.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="go">        return mul(x, x)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="go">        return mul(x, x-1) + x</span>
+</pre></div>
+</div>
+<p>In other words, a function definition should be able to suppress details. The users of the function may not have written the function themselves, but may have obtained it from another programmer as a &#8220;black box&#8221;. A user should not need to know how the function is implemented in order to use it. The Python Library has this property. Many developers use the functions defined there, but few ever inspect their implementation. In fact, many implementations of Python Library functions are not written in Python at all, but instead in the C language.</p>
+</div>
+<div class="section" id="id20">
+<h2>オペレーター<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Mathematical operators (like + and -) provided our first example of a method of combination, but we have yet to define an evaluation procedure for expressions that contain these operators.</p>
+<p>Python expressions with infix operators each have their own evaluation procedures, but you can often think of them as short-hand for call expressions. When you see</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>simply consider it to be short-hand for</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>Infix notation can be nested, just like call expressions. Python applies the normal mathematical rules of operator precedence, which dictate how to interpret a compound expression with multiple operators.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="go">19</span>
+</pre></div>
+</div>
+<p>evaluates to the same result as</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">mul</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">19</span>
+</pre></div>
+</div>
+<p>The nesting in the call expression is more explicit than the operator version. Python also allows subexpression grouping with parentheses, to override the normal precedence rules or make the nested structure of an expression more explicit.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">45</span>
+</pre></div>
+</div>
+<p>evaluates to the same result as</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mul</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">add</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="go">45</span>
+</pre></div>
+</div>
+<p>You should feel free to use these operators and parentheses in your programs. Idiomatic Python prefers operators over call expressions for simple mathematical operations.</p>
+</div>
+<div class="section" id="id21">
+<h2>実践的手引き：関数の芸術<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Functions are an essential ingredient of all programs, large and small, and serve as our primary medium to express computational processes in a programming language. So far, we have discussed the formal properties of functions and how they are applied. We now turn to the topic of what makes a good function. Fundamentally, the qualities of good functions all reinforce the idea that functions are abstractions.</p>
+<blockquote>
+<div>Each function should have exactly one job. That job should be identifiable with a short name and characterizable in a single line of text. Functions that perform multiple jobs in sequence should be divided into multiple functions.
+Don&#8217;t repeat yourself is a central tenet of software engineering. The so-called DRY principle states that multiple fragments of code should not describe redundant logic. Instead, that logic should be implemented once, given a name, and applied multiple times. If you find yourself copying and pasting a block of code, you have probably found an opportunity for functional abstraction.
+Functions should be defined generally. Squaring is not in the Python Library precisely because it is a special case of the pow function, which raises numbers to arbitrary powers.</div></blockquote>
+<p>These guidelines improve the readability of code, reduce the number of errors, and often minimize the total amount of code written. Decomposing a complex task into concise functions is a skill that takes experience to master. Fortunately, Python provides several features to support your efforts.</p>
+</div>
+<div class="section" id="id22">
+<h2>ドックストリング<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>A function definition will often include documentation describing the function, called a docstring, which must be indented along with the function body. Docstrings are conventionally triple quoted. The first line describes the job of the function in one line. The following lines can describe arguments and clarify the behavior of the function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pressure</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="go">        &quot;&quot;&quot;Compute the pressure in pascals of an ideal gas.</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Applies the ideal gas law: <a class="reference external" href="http://en.wikipedia.org/wiki/Ideal_gas_law">http://en.wikipedia.org/wiki/Ideal_gas_law</a></p>
+<p>v &#8211; volume of gas, in cubic meters
+t &#8211; absolute temperature in degrees kelvin
+n &#8211; particles of gas
+&#8220;&#8221;&#8221;
+k = 1.38e-23  # Boltzmann&#8217;s constant
+return n * k * t / v</p>
+</div></blockquote>
+<p>When you call help with the name of a function as an argument, you see its docstring (type q to quit Python help).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">pressure</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When writing Python programs, include docstrings for all but the simplest functions. Remember, code is written only once, but often read many times. The Python docs include docstring guidelines that maintain consistency across different Python projects.</p>
+</div>
+<div class="section" id="id23">
+<h2>デフォルトの引数値<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>A consequence of defining general functions is the introduction of additional arguments. Functions with many arguments can be awkward to call and difficult to read.</p>
+<p>In Python, we can provide default values for the arguments of a function. When calling that function, arguments with default values are optional. If they are not provided, then the default value is bound to the formal parameter name instead. For instance, if an application commonly computes pressure for one mole of particles, this value can be provided as a default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">k_b</span><span class="o">=</span><span class="mf">1.38e-23</span>  <span class="c"># Boltzmann&#39;s constant</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pressure</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mf">6.022e23</span><span class="p">):</span>
+<span class="go">        &quot;&quot;&quot;Compute the pressure in pascals of an ideal gas.</span>
+</pre></div>
+</div>
+<blockquote>
+<div>v &#8211; volume of gas, in cubic meters
+t &#8211; absolute temperature in degrees kelvin
+n &#8211; particles of gas (default: one mole)
+&#8220;&#8221;&#8221;
+return n * k_b * t / v</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pressure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">273.15</span><span class="p">)</span>
+<span class="go">2269.974834</span>
+</pre></div>
+</div>
+<p>Here, pressure is defined to take three arguments, but only two are provided in the call expression that follows. In this case, the value for n is taken from the def statement defaults (which looks like an assignment to n, although as this discussion suggests, it is more of a conditional assignment.)</p>
+<p>As a guideline, most data values used in a function&#8217;s body should be expressed as default values to named arguments, so that they are easy to inspect and can be changed by the function caller. Some values that never change, like the fundamental constant k_b, can be defined in the global frame.</p>
+</div>
+<div class="section" id="id24">
+<h2>制御<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The expressive power of the functions that we can define at this point is very limited, because we have not introduced a way to make tests and to perform different operations depending on the result of a test. Control statements will give us this capacity. Control statements differ fundamentally from the expressions that we have studied so far. They deviate from the strict evaluation of subexpressions from left to write, and get their name from the fact that they control what the interpreter should do next, possibly based on the values of expressions.</p>
+</div>
+<div class="section" id="id25">
+<h2>文<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>So far, we have primarily considered how to evaluate expressions. However, we have seen three kinds of statements: assignment, def, and return statements. These lines of Python code are not themselves expressions, although they all contain expressions as components.</p>
+<p>To emphasize that the value of a statement is irrelevant (or nonexistant), we describe statements as being executed rather than evaluated. Each statement describes some change to the interpreter state, and executing a statement applies that change. As we have seen for return and assignment statements, executing statements can involve evaluating subexpressions contained within them.</p>
+<p>Expressions can also be executed as statements, in which case they are evaluated, but their value is discarded. Executing a pure function has no effect, but executing a non-pure function can cause effects as a consequence of function application.</p>
+<p>Consider, for instance,</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="go">        mul(x, x) # Watch out! This call doesn&#39;t return a value.</span>
+</pre></div>
+</div>
+<p>This is valid Python, but probably not what was intended. The body of the function consists of an expression. An expression by itself is a valid statement, but the effect of the statement is that the mul function is called, and the result is discarded. If you want to do something with the result of an expression, you need to say so: you might store it with an assignment statement, or return it with a return statement:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="go">        return mul(x, x)</span>
+</pre></div>
+</div>
+<p>Sometimes it does make sense to have a function whose body is an expression, when a non-pure function like print is called.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">print_square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="go">        print(square(x))</span>
+</pre></div>
+</div>
+<p>At its highest level, the Python interpreter&#8217;s job is to execute programs, composed of statements. However, much of the interesting work of computation comes from evaluating expressions. Statements govern the relationship among different expressions in a program and what happens to their results.</p>
+</div>
+<div class="section" id="id26">
+<h2>複文<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In general, Python code is a sequence of statements. A simple statement is a single line that doesn&#8217;t end in a colon. A compound statement is so called because it is composed of other statements (simple and compound). Compound statements typically span multiple lines and start with a one-line header ending in a colon, which identifies the type of statement. Together, a header and an indented suite of statements is called a clause. A compound statement consists of one or more clauses:</p>
+<dl class="docutils">
+<dt>&lt;header&gt;:</dt>
+<dd>&lt;statement&gt;
+&lt;statement&gt;
+...</dd>
+<dt>&lt;separating header&gt;:</dt>
+<dd>&lt;statement&gt;
+&lt;statement&gt;
+...</dd>
+</dl>
+<p>...</p>
+<p>We can understand the statements we have already introduced in these terms.</p>
+<blockquote>
+<div>Expressions, return statements, and assignment statements are simple statements.
+A def statement is a compound statement. The suite that follows the def header defines the function body.</div></blockquote>
+<p>Specialized evaluation rules for each kind of header dictate when and if the statements in its suite are executed. We say that the header controls its suite. For example, in the case of def statements, we saw that the return expression is not evaluated immediately, but instead stored for later use when the defined function is eventually applied.</p>
+<p>We can also understand multi-line programs now.</p>
+<blockquote>
+<div>To execute a sequence of statements, execute the first statement. If that statement does not redirect control, then proceed to execute the rest of the sequence of statements, if any remain.</div></blockquote>
+<p>This definition exposes the essential structure of a recursively defined sequence: a sequence can be decomposed into its first element and the rest of its elements. The &#8220;rest&#8221; of a sequence of statements is itself a sequence of statements! Thus, we can recursively apply this execution rule. This view of sequences as recursive data structures will appear again in later chapters.</p>
+<p>The important consequence of this rule is that statements are executed in order, but later statements may never be reached, because of redirected control.</p>
+<p>Practical Guidance. When indenting a suite, all lines must be indented the same amount and in the same way (spaces, not tabs). Any variation in indentation will cause an error.</p>
+</div>
+<div class="section" id="ii">
+<h2>関数の定義II：局所代入<a class="headerlink" href="#ii" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Originally, we stated that the body of a user-defined function consisted only of a return statement with a single return expression. In fact, functions can define a sequence of operations that extends beyond a single expression. The structure of compound Python statements naturally allows us to extend our concept of a function body to multiple statements.</p>
+<p>Whenever a user-defined function is applied, the sequence of clauses in the suite of its definition is executed in a local environment. A return statement redirects control: the process of function application terminates whenever the first return statement is executed, and the value of the return expression is the returned value of the function being applied.</p>
+<p>Thus, assignment statements can now appear within a function body. For instance, this function returns the absolute difference between two quantities as a percentage of the first, using a two-step calculation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">percent_difference</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="go">        difference = abs(x-y)</span>
+<span class="go">        return 100 * difference / x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">percent_difference</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="go">25.0</span>
+</pre></div>
+</div>
+<p>The effect of an assignment statement is to bind a name to a value in the first frame of the current environment. As a consequence, assignment statements within a function body cannot affect the global frame. The fact that functions can only manipulate their local environment is critical to creating modular programs, in which pure functions interact only via the values they take and return.</p>
+<p>Of course, the percent_difference function could be written as a single expression, as shown below, but the return expression is more complex.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">percent_difference</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="go">        return 100 * abs(x-y) / x</span>
+</pre></div>
+</div>
+<p>So far, local assignment hasn&#8217;t increased the expressive power of our function definitions. It will do so, when combined with the control statements below. In addition, local assignment also plays a critical role in clarifying the meaning of complex expressions by assigning names to intermediate quantities.</p>
+<p>New environment Feature: Local assignment.</p>
+</div>
+<div class="section" id="id27">
+<h2>状態文<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Python has a built-in function for computing absolute values.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>We would like to be able to implement such a function ourselves, but we cannot currently define a function that has a test and a choice. We would like to express that if x is positive, abs(x) returns x. Furthermore, if x is 0, abs(x) returns 0. Otherwise, abs(x) returns -x. In Python, we can express this choice with a conditional statement.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">absolute_value</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="go">        &quot;&quot;&quot;Compute abs(x).&quot;&quot;&quot;</span>
+<span class="go">        if x &gt; 0:</span>
+<span class="go">            return x</span>
+<span class="go">        elif x == 0:</span>
+<span class="go">            return 0</span>
+<span class="go">        else:</span>
+<span class="go">            return -x</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">absolute_value</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="nb">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>This implementation of absolute_value raises several important issues.</p>
+<p>Conditional statements. A conditional statement in Python consist of a series of headers and suites: a required if clause, an optional sequence of elif clauses, and finally an optional else clause:</p>
+<dl class="docutils">
+<dt>if &lt;expression&gt;:</dt>
+<dd>&lt;suite&gt;</dd>
+<dt>elif &lt;expression&gt;:</dt>
+<dd>&lt;suite&gt;</dd>
+<dt>else:</dt>
+<dd>&lt;suite&gt;</dd>
+</dl>
+<p>When executing a conditional statement, each clause is considered in order.</p>
+<blockquote>
+<div>Evaluate the header&#8217;s expression.
+If it is a true value, execute the suite. Then, skip over all subsequent clauses in the conditional statement.</div></blockquote>
+<p>If the else clause is reached (which only happens if all if and elif expressions evaluate to false values), its suite is executed.</p>
+<p>Boolean contexts. Above, the execution procedures mention &#8220;a false value&#8221; and &#8220;a true value.&#8221; The expressions inside the header statements of conditional blocks are said to be in boolean contexts: their truth values matter to control flow, but otherwise their values can never be assigned or returned. Python includes several false values, including 0, None, and the boolean value False. All other numbers are true values. In Chapter 2, we will see that every native data type in Python has both true and false values.</p>
+<p>Boolean values. Python has two boolean values, called True and False. Boolean values represent truth values in logical expressions. The built-in comparison operations, &gt;, &lt;, &gt;=, &lt;=, ==, !=, return these values.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">4</span> <span class="o">&lt;</span> <span class="mi">2</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>This second example reads &#8220;5 is greater than or equal to 5&#8221;, and corresponds to the function ge in the operator module.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">0</span> <span class="o">==</span> <span class="o">-</span><span class="mi">0</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>This final example reads &#8220;0 equals -0&#8221;, and corresponds to eq in the operator module. Notice that Python distinguishes assignment (=) from equality testing (==), a convention shared across many programming languages.</p>
+<p>Boolean operators. Three basic logical operators are also built into Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="bp">True</span> <span class="ow">and</span> <span class="bp">False</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="bp">True</span> <span class="ow">or</span> <span class="bp">False</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="ow">not</span> <span class="bp">False</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Logical expressions have corresponding evaluation procedures. These procedures exploit the fact that the truth value of a logical expression can sometimes be determined without evaluating all of its subexpressions, a feature called short-circuiting.</p>
+<p>To evaluate the expression &lt;left&gt; and &lt;right&gt;:</p>
+<blockquote>
+<div>Evaluate the subexpression &lt;left&gt;.
+If the result is a false value v, then the expression evaluates to v.
+Otherwise, the expression evaluates to the value of the subexpression &lt;right&gt;.</div></blockquote>
+<p>To evaluate the expression &lt;left&gt; or &lt;right&gt;:</p>
+<blockquote>
+<div>Evaluate the subexpression &lt;left&gt;.
+If the result is a true value v, then the expression evaluates to v.
+Otherwise, the expression evaluates to the value of the subexpression &lt;right&gt;.</div></blockquote>
+<p>To evaluate the expression not &lt;exp&gt;:</p>
+<blockquote>
+<div>Evaluate &lt;exp&gt;; The value is True if the result is a false value, and False otherwise.</div></blockquote>
+<p>These values, rules, and operators provide us with a way to combine the results of tests. Functions that perform tests and return boolean values typically begin with is, not followed by an underscore (e.g., isfinite, isdigit, isinstance, etc.).</p>
+</div>
+<div class="section" id="id28">
+<h2>イテレーション<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>In addition to selecting which statements to execute, control statements are used to express repetition. If each line of code we wrote were only executed once, programming would be a very unproductive exercise. Only through repeated execution of statements do we unlock the potential of computers to make us powerful. We have already seen one form of repetition: a function can be applied many times, although it is only defined once. Iterative control structures are another mechanism for executing the same statements many times.</p>
+<p>Consider the sequence of Fibonacci numbers, in which each number is the sum of the preceding two:</p>
+<p>0, 1, 1, 2, 3, 5, 8, 13, 21, ...</p>
+<p>Each value is constructed by repeatedly applying the sum-previous-two rule. To build up the nth value, we need to track how many values we&#8217;ve created (k), along with the kth value (curr) and its predecessor (pred), like so:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="go">        &quot;&quot;&quot;Compute the nth Fibonacci number, for n &gt;= 2.&quot;&quot;&quot;</span>
+<span class="go">        pred, curr = 0, 1   # Fibonacci numbers</span>
+<span class="go">        k = 2               # Position of curr in the sequence</span>
+<span class="go">        while k &lt; n:</span>
+<span class="go">            pred, curr = curr, pred + curr  # Re-bind pred and curr</span>
+<span class="go">            k = k + 1                       # Re-bind k</span>
+<span class="go">        return curr</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="go">13</span>
+</pre></div>
+</div>
+<p>Remember that commas seperate multiple names and values in an assignment statement. The line:</p>
+<p>pred, curr = curr, pred + curr</p>
+<p>has the effect of rebinding the name pred to the value of curr, and simultanously rebinding curr to the value of pred + curr. All of the expressions to the right of = are evaluated before any rebinding takes place.</p>
+<p>A while clause contains a header expression followed by a suite:</p>
+<dl class="docutils">
+<dt>while &lt;expression&gt;:</dt>
+<dd>&lt;suite&gt;</dd>
+</dl>
+<p>To execute a while clause:</p>
+<blockquote>
+<div>Evaluate the header&#8217;s expression.
+If it is a true value, execute the suite, then return to step 1.</div></blockquote>
+<p>In step 2, the entire suite of the while clause is executed before the header expression is evaluated again.</p>
+<p>In order to prevent the suite of a while clause from being executed indefinitely, the suite should always change the state of the environment in each pass.</p>
+<p>A while statement that does not terminate is called an infinite loop. Press &lt;Control&gt;-C to force Python to stop looping.</p>
+</div>
+<div class="section" id="id29">
+<h2>実践的手引き：テスト<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Testing a function is the act of verifying that the function&#8217;s behavior matches expectations. Our language of functions is now sufficiently complex that we need to start testing our implementations.</p>
+<p>A test is a mechanism for systematically performing this verification. Tests typically take the form of another function that contains one or more sample calls to the function being tested. The returned value is then verified against an expected result. Unlike most functions, which are meant to be general, tests involve selecting and validating calls with specific argument values. Tests also serve as documentation: they demonstrate how to call a function, and what argument values are appropriate.</p>
+<p>Note that we have also used the word &#8220;test&#8221; as a technical term for the expression in the header of an if or while statement. It should be clear from context when we use the word &#8220;test&#8221; to denote an expression, and when we use it to denote a verification mechanism.</p>
+<p>Assertions. Programmers use assert statements to verify expectations, such as the output of a function being tested. An assert statement has an expression in a boolean context, followed by a quoted line of text (single or double quotes are both fine, but be consistent) that will be displayed if the expression evaluates to a false value.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">fib</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">==</span> <span class="mi">13</span><span class="p">,</span> <span class="s">&#39;The 8th Fibonacci number should be 13&#39;</span>
+</pre></div>
+</div>
+<p>When the expression being asserted evaluates to a true value, executing an assert statement has no effect. When it is a false value, assert causes an error that halts execution.</p>
+<p>A test function for fib should test several arguments, including extreme values of n.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fib_test</span><span class="p">():</span>
+<span class="go">        assert fib(2) == 1, &#39;The 2nd Fibonacci number should be 1&#39;</span>
+<span class="go">        assert fib(3) == 1, &#39;The 3nd Fibonacci number should be 1&#39;</span>
+<span class="go">        assert fib(50) == 7778742049, &#39;Error at the 50th Fibonacci number&#39;</span>
+</pre></div>
+</div>
+<p>When writing Python in files, rather than directly into the interpreter, tests should be written in the same file or a neighboring file with the suffix _test.py.</p>
+<p>Doctests. Python provides a convenient method for placing simple tests directly in the docstring of a function. The first line of a docstring should contain a one-line description of the function, followed by a blank line. A detailed description of arguments and behavior may follow. In addition, the docstring may include a sample interactive session that calls the function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">sum_naturals</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="go">        &quot;&quot;&quot;Return the sum of the first n natural numbers</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sum_naturals</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">55</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sum_naturals</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="go">5050</span>
+<span class="go">&quot;&quot;&quot;</span>
+<span class="go">total, k = 0, 1</span>
+<span class="go">while k &lt;= n:</span>
+<span class="go">  total, k = total + k, k + 1</span>
+<span class="go">return total</span>
+</pre></div>
+</div>
+<p>Then, the interaction can be verified via the doctest module. Below, the globals function returns a representation of the global environment, which the interpreter needs in order to evaluate expressions.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">doctest</span> <span class="kn">import</span> <span class="n">run_docstring_examples</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">run_docstring_examples</span><span class="p">(</span><span class="n">sum_naturals</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>When writing Python in files, all doctests in a file can be run by starting Python with the doctest command line option:</p>
+<p>python3 -m doctest &lt;python_source_file&gt;</p>
+<p>The key to effective testing is to write (and run) tests immediately after (or even before) implementing new functions. A test that applies a single function is called a unit test. Exhaustive unit testing is a hallmark of good program design.</p>
+</div>
+<div class="section" id="id30">
+<h2>高階関数<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>We have seen that functions are, in effect, abstractions that describe compound operations independent of the particular values of their arguments. In square,</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="go">        return x * x</span>
+</pre></div>
+</div>
+<p>we are not talking about the square of a particular number, but rather about a method for obtaining the square of any number. Of course we could get along without ever defining this function, by always writing expressions such as</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="go">9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="go">25</span>
+</pre></div>
+</div>
+<p>and never mentioning square explicitly. This practice would suffice for simple computations like square, but would become arduous for more complex examples. In general, lacking function definition would put us at the disadvantage of forcing us to work always at the level of the particular operations that happen to be primitives in the language (multiplication, in this case) rather than in terms of higher-level operations. Our programs would be able to compute squares, but our language would lack the ability to express the concept of squaring. One of the things we should demand from a powerful programming language is the ability to build abstractions by assigning names to common patterns and then to work in terms of the abstractions directly. Functions provide this ability.</p>
+<p>As we will see in the following examples, there are common programming patterns that recur in code, but are used with a number of different functions. These patterns can also be abstracted, by giving them names.</p>
+<p>To express certain general patterns as named concepts, we will need to construct functions that can accept other functions as arguments or return functions as values. Functions that manipulate functions are called higher-order functions. This section shows how higher-order functions can serve as powerful abstraction mechanisms, vastly increasing the expressive power of our language.</p>
+</div>
+<div class="section" id="id31">
+<h2>引数としての関数<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Consider the following three functions, which all compute summations. The first, sum_naturals, computes the sum of natural numbers up to n:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">sum_naturals</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="go">        total, k = 0, 1</span>
+<span class="go">        while k &lt;= n:</span>
+<span class="go">            total, k = total + k, k + 1</span>
+<span class="go">        return total</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sum_naturals</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="go">5050</span>
+</pre></div>
+</div>
+<p>The second, sum_cubes, computes the sum of the cubes of natural numbers up to n.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">sum_cubes</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="go">        total, k = 0, 1</span>
+<span class="go">        while k &lt;= n:</span>
+<span class="go">            total, k = total + pow(k, 3), k + 1</span>
+<span class="go">        return total</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sum_cubes</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="go">25502500</span>
+</pre></div>
+</div>
+<p>The third, pi_sum, computes the sum of terms in the series
+img/pi_sum.png</p>
+<p>which converges to pi very slowly.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pi_sum</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="go">        total, k = 0, 1</span>
+<span class="go">        while k &lt;= n:</span>
+<span class="go">            total, k = total + 8 / (k * (k + 2)), k + 4</span>
+<span class="go">        return total</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pi_sum</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="go">3.121594652591009</span>
+</pre></div>
+</div>
+<p>These three functions clearly share a common underlying pattern. They are for the most part identical, differing only in name, the function of k used to compute the term to be added, and the function that provides the next value of k. We could generate each of the functions by filling in slots in the same template:</p>
+<dl class="docutils">
+<dt>def &lt;name&gt;(n):</dt>
+<dd><p class="first">total, k = 0, 1
+while k &lt;= n:</p>
+<blockquote>
+<div>total, k = total + &lt;term&gt;(k), &lt;next&gt;(k)</div></blockquote>
+<p class="last">return total</p>
+</dd>
+</dl>
+<p>The presence of such a common pattern is strong evidence that there is a useful abstraction waiting to be brought to the surface. Each of these functions is a summation of terms. As program designers, we would like our language to be powerful enough so that we can write a function that expresses the concept of summation itself rather than only functions that compute particular sums. We can do so readily in Python by taking the common template shown above and transforming the &#8220;slots&#8221; into formal parameters:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">summation</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">term</span><span class="p">,</span> <span class="nb">next</span><span class="p">):</span>
+<span class="go">        total, k = 0, 1</span>
+<span class="go">        while k &lt;= n:</span>
+<span class="go">            total, k = total + term(k), next(k)</span>
+<span class="go">        return total</span>
+</pre></div>
+</div>
+<p>Notice that summation takes as its arguments the upper bound n together with the functions term and next. We can use summation just as we would any function, and it expresses summations succinctly:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">cube</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+<span class="go">        return pow(k, 3)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">successor</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+<span class="go">        return k + 1</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">sum_cubes</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="go">        return summation(n, cube, successor)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sum_cubes</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">36</span>
+</pre></div>
+</div>
+<p>Using an identity function that returns its argument, we can also sum integers.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">identity</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+<span class="go">        return k</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">sum_naturals</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="go">        return summation(n, identity, successor)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sum_naturals</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">55</span>
+</pre></div>
+</div>
+<p>We can also define pi_sum piece by piece, using our summation abstraction to combine components.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pi_term</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+<span class="go">        denominator = k * (k + 2)</span>
+<span class="go">        return 8 / denominator</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pi_next</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+<span class="go">        return k + 4</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pi_sum</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="go">        return summation(n, pi_term, pi_next)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pi_sum</span><span class="p">(</span><span class="mf">1e6</span><span class="p">)</span>
+<span class="go">3.1415906535898936</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id32">
+<h2>一般メソッドとしての関数<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>We introduced user-defined functions as a mechanism for abstracting patterns of numerical operations so as to make them independent of the particular numbers involved. With higher-order functions, we begin to see a more powerful kind of abstraction: some functions express general methods of computation, independent of the particular functions they call.</p>
+<p>Despite this conceptual extension of what a function means, our environment model of how to evaluate a call expression extends gracefully to the case of higher-order functions, without change. When a user-defined function is applied to some arguments, the formal parameters are bound to the values of those arguments (which may be functions) in a new local frame.</p>
+<p>Consider the following example, which implements a general method for iterative improvement and uses it to compute the golden ratio. An iterative improvement algorithm begins with a guess of a solution to an equation. It repeatedly applies an update function to improve that guess, and applies a test to check whether the current guess is &#8220;close enough&#8221; to be considered correct.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">iter_improve</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">guess</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="go">        while not test(guess):</span>
+<span class="go">            guess = update(guess)</span>
+<span class="go">        return guess</span>
+</pre></div>
+</div>
+<p>The test function typically checks whether two functions, f and g, are near to each other for the value guess. Testing whether f(x) is near to g(x) is again a general method of computation.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">near</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+<span class="go">        return approx_eq(f(x), g(x))</span>
+</pre></div>
+</div>
+<p>A common way to test for approximate equality in programs is to compare the absolute value of the difference between numbers to a small tolerance value.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">approx_eq</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+<span class="go">        return abs(x - y) &lt; tolerance</span>
+</pre></div>
+</div>
+<p>The golden ratio, often called phi, is a number that appears frequently in nature, art, and architecture. It can be computed via iter_improve using the golden_update, and it converges when its successor is equal to its square.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">golden_update</span><span class="p">(</span><span class="n">guess</span><span class="p">):</span>
+<span class="go">        return 1/guess + 1</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">golden_test</span><span class="p">(</span><span class="n">guess</span><span class="p">):</span>
+<span class="go">        return near(guess, square, successor)</span>
+</pre></div>
+</div>
+<p>At this point, we have added several bindings to the global frame. The depictions of function values are abbreviated for clarity.
+img/iter_improve_global.png</p>
+<p>Calling iter_improve with the arguments golden_update and golden_test will compute an approximation to the golden ratio.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">iter_improve</span><span class="p">(</span><span class="n">golden_update</span><span class="p">,</span> <span class="n">golden_test</span><span class="p">)</span>
+<span class="go">1.6180371352785146</span>
+</pre></div>
+</div>
+<p>By tracing through the steps of our evaluation procedure, we can see how this result is computed. First, a local frame for iter_improve is constructed with bindings for update, test, and guess. In the body of iter_improve, the name test is bound to golden_test, which is called on the initial value of guess. In turn, golden_test calls near, creating a third local frame that binds the formal parameters f and g to square and successor.
+img/iter_improve_apply.png</p>
+<p>Completing the evaluation of near, we see that the golden_test is False because 1 is not close to 2. Hence, evaluation proceeds with the suite of the while clause, and this mechanical process repeats several times.</p>
+<p>This extended example illustrates two related big ideas in computer science. First, naming and functions allow us to abstract away a vast amount of complexity. While each function definition has been trivial, the computational process set in motion by our evaluation procedure appears quite intricate, and we didn&#8217;t even illustrate the whole thing. Second, it is only by virtue of the fact that we have an extremely general evaluation procedure that small components can be composed into complex processes. Understanding that procedure allows us to validate and inspect the process we have created.</p>
+<p>As always, our new general method iter_improve needs a test to check its correctness. The golden ratio can provide such a test, because it also has an exact closed-form solution, which we can compare to this iterative result.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">phi</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">near_test</span><span class="p">():</span>
+<span class="go">        assert near(phi, square, successor), &#39;phi * phi is not near phi + 1&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">iter_improve_test</span><span class="p">():</span>
+<span class="go">        approx_phi = iter_improve(golden_update, golden_test)</span>
+<span class="go">        assert approx_eq(phi, approx_phi), &#39;phi differs from its approximation&#39;</span>
+</pre></div>
+</div>
+<p>New environment Feature: Higher-order functions.</p>
+<p>Extra for experts. We left out a step in the justification of our test. For what range of tolerance values e can you prove that if near(x, square, successor) is true with tolerance value e, then approx_eq(phi, x) is true with the same tolerance?</p>
+</div>
+<div class="section" id="iii">
+<h2>関数定義III：入れ子になった定義<a class="headerlink" href="#iii" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>The above examples demonstrate how the ability to pass functions as arguments significantly enhances the expressive power of our programming language. Each general concept or equation maps onto its own short function. One negative consequence of this approach to programming is that the global frame becomes cluttered with names of small functions. Another problem is that we are constrained by particular function signatures: the update argument to iter_improve must take exactly one argument. In Python, nested function definitions address both of these problems, but require us to amend our environment model slightly.</p>
+<p>Let&#8217;s consider a new problem: computing the square root of a number. Repeated application of the following update converges to the square root of x:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="go">        return (x + y)/2</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">sqrt_update</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="go">        return average(guess, x/guess)</span>
+</pre></div>
+</div>
+<p>This two-argument update function is incompatible with iter_improve, and it just provides an intermediate value; we really only care about taking square roots in the end. The solution to both of these issues is to place function definitions inside the body of other definitions.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square_root</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="go">        def update(guess):</span>
+<span class="go">            return average(guess, x/guess)</span>
+<span class="go">        def test(guess):</span>
+<span class="go">            return approx_eq(square(guess), x)</span>
+<span class="go">        return iter_improve(update, test)</span>
+</pre></div>
+</div>
+<p>Like local assignment, local def statements only affect the current local frame. These functions are only in scope while square_root is being evaluated. Consistent with our evaluation procedure, these local def statements don&#8217;t even get evaluated until square_root is called.</p>
+<p>Lexical scope. Locally defined functions also have access to the name bindings in the scope in which they are defined. In this example, update refers to the name x, which is a formal parameter of its enclosing function square_root. This discipline of sharing names among nested definitions is called lexical scoping. Critically, the inner functions have access to the names in the environment where they are defined (not where they are called).</p>
+<p>We require two extensions to our environment model to enable lexical scoping.</p>
+<blockquote>
+<div>Each user-defined function has an associated environment: the environment in which it was defined.
+When a user-defined function is called, its local frame extends the environment associated with the function.</div></blockquote>
+<p>Previous to square_root, all functions were defined in the global environment, and so they were all associated with the global environment. When we evaluate the first two clauses of square_root, we create functions that are associated with a local environment. In the call</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">square_root</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
+<span class="go">16.00000000000039</span>
+</pre></div>
+</div>
+<p>the environment first adds a local frame for square_root and evaluates the def statements for update and test (only update is shown).
+img/square_root.png</p>
+<p>Subsequently, the name update resolves to this newly defined function, which is passed as an argument to iter_improve. Within the body of iter_improve, we must apply our update function to the initial guess of 1. This final application creates an environment for update that begins with a local frame containing only g, but with the preceding frame for square_root still containing a binding for x.
+img/square_root_update.png</p>
+<p>The most crucial part of this evaluation procedure is the transfer of an environment associated with a function to the local frame in which that function is evaluated. This transfer is highlighted by the blue arrows in this diagram.</p>
+<p>In this way, the body of update can resolve a value for x. Hence, we realize two key advantages of lexical scoping in Python.</p>
+<blockquote>
+<div>The names of a local function do not interfere with names external to the function in which it is defined, because the local function name will be bound in the current local environment in which it is defined, rather than the global environment.
+A local function can access the environment of the enclosing function. This is because the body of the local function is evaluated in an environment that extends the evaluation environment in which it is defined.</div></blockquote>
+<p>The update function carries with it some data: the values referenced in the environment in which it was defined. Because they enclose information in this way, locally defined functions are often called closures.</p>
+<p>New environment Feature: Local function definition.</p>
+</div>
+<div class="section" id="id33">
+<h2>戻り値としての関数<a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>We can achieve even more expressive power in our programs by creating functions whose returned values are themselves functions. An important feature of lexically scoped programming languages is that locally defined functions keep their associated environment when they are returned. The following example illustrates the utility of this feature.</p>
+<p>With many simple functions defined, function composition is a natural method of combination to include in our programming language. That is, given two functions f(x) and g(x), we might want to define h(x) = f(g(x)). We can define function composition using our existing tools:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">compose1</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+<span class="go">        def h(x):</span>
+<span class="go">            return f(g(x))</span>
+<span class="go">        return h</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">add_one_and_square</span> <span class="o">=</span> <span class="n">compose1</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">successor</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_one_and_square</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="go">169</span>
+</pre></div>
+</div>
+<p>The 1 in compose1 indicates that the composed functions and returned result all take 1 argument. This naming convention isn&#8217;t enforced by the interpreter; the 1 is just part of the function name.</p>
+<p>At this point, we begin to observe the benefits of our investment in a rich model of computation. No modifications to our environment model are required to support our ability to return functions in this way.</p>
+</div>
+<div class="section" id="id34">
+<h2>ラムダ式<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>So far, every time we want to define a new function, we need to give it a name. But for other types of expressions, we don’t need to associate intermediate products with a name. That is, we can compute a*b + c*d without having to name the subexpressions a*b or c*d, or the full expression. In Python, we can create function values on the fly using lambda expressions, which evaluate to unnamed functions. A lambda expression evaluates to a function that has a single return expression as its body. Assignment and control statements are not allowed.</p>
+<p>Lambda expressions are limited: They are only useful for simple, one-line functions that evaluate and return a single expression. In those special cases where they apply, lambda expressions can be quite expressive.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">compose1</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">g</span><span class="p">):</span>
+<span class="go">        return lambda x: f(g(x))</span>
+</pre></div>
+</div>
+<p>We can understand the structure of a lambda expression by constructing a corresponding English sentence:</p>
+<blockquote>
+<div>lambda            x            :          f(g(x))</div></blockquote>
+<p>&#8220;A function that    takes x    and returns     f(g(x))&#8221;</p>
+<p>Some programmers find that using unnamed functions from lambda expressions is shorter and more direct. However, compound lambda expressions are notoriously illegible, despite their brevity. The following definition is correct, but some programmers have trouble understanding it quickly.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">compose1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span><span class="n">g</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>In general, Python style prefers explicit def statements to lambda expressions, but allows them in cases where a simple function is needed as an argument or return value.</p>
+<p>Such stylistic rules are merely guidelines; you can program any way you wish. However, as you write programs, think about the audience of people who might read your program one day. If you can make your program easier to interpret, you will do those people a favor.</p>
+<p>The term lambda is a historical accident resulting from the incompatibility of written mathematical notation and the constraints of early type-setting systems.</p>
+<blockquote>
+<div><p>It may seem perverse to use lambda to introduce a procedure/function. The notation goes back to Alonzo Church, who in the 1930&#8217;s started with a &#8220;hat&#8221; symbol; he wrote the square function as &#8220;ŷ . y × y&#8221;. But frustrated typographers moved the hat to the left of the parameter and changed it to a capital lambda: &#8220;Λy . y × y&#8221;; from there the capital lambda was changed to lowercase, and now we see &#8220;λy . y × y&#8221; in math books and (lambda (y) (* y y)) in Lisp.</p>
+<p class="attribution">&mdash;Peter Norvig (norvig.com/lispy2.html)</p>
+</div></blockquote>
+<p>Despite their unusual etymology, lambda expressions and the corresponding formal language for function application, the lambda calculus, are fundamental computer science concepts shared far beyond the Python programming community. We will revisit this topic when we study the design of interpreters in Chapter 3.
+1.6.6   Example: Newton&#8217;s Method</p>
+<p>This final extended example shows how function values, local defintions, and lambda expressions can work together to express general ideas concisely.</p>
+<p>Newton&#8217;s method is a classic iterative approach to finding the arguments of a mathematical function that yield a return value of 0. These values are called roots of a single-argument mathematical function. Finding a root of a function is often equivalent to solving a related math problem.</p>
+<blockquote>
+<div>The square root of 16 is the value x such that: square(x) - 16 = 0
+The log base 2 of 32 (i.e., the exponent to which we would raise 2 to get 32) is the value x such that: pow(2, x) - 32 = 0</div></blockquote>
+<p>Thus, a general method for finding roots will also provide us an algorithm to compute square roots and logarithms. Moreover, the equations for which we want to compute roots only contain simpler operations: multiplication and exponentiation.</p>
+<p>A comment before we proceed: it is easy to take for granted the fact that we know how to compute square roots and logarithms. Not just Python, but your phone, your pocket calculator, and perhaps even your watch can do so for you. However, part of learning computer science is understanding how quantities like these can be computed, and the general approach presented here is applicable to solving a large class of equations beyond those built into Python.</p>
+<p>Before even beginning to understand Newton&#8217;s method, we can start programming; this is the power of functional abstractions. We simply translate our previous statements into code.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square_root</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<span class="go">        return find_root(lambda x: square(x) - a)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">logarithm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="go">        return find_root(lambda x: pow(base, x) - a)</span>
+</pre></div>
+</div>
+<p>Of course, we cannot apply any of these functions until we define find_root, and so we need to understand how Newton&#8217;s method works.</p>
+<p>Newton&#8217;s method is also an iterative improvement algorithm: it improves a guess of the root for any function that is differentiable. Notice that both of our functions of interest change smoothly; graphing x versus f(x) for</p>
+<blockquote>
+<div>f(x) = square(x) - 16 (light curve)
+f(x) = pow(2, x) - 32 (dark curve)</div></blockquote>
+<p>on a 2-dimensional plane shows that both functions produce a smooth curve without kinks that crosses 0 at the appropriate point.
+img/curves.png</p>
+<p>Because they are smooth (differentiable), these curves can be approximated by a line at any point. Newton&#8217;s method follows these linear approximations to find function roots.</p>
+<p>Imagine a line through the point (x, f(x)) that has the same slope as the curve for function f(x) at that point. Such a line is called the tangent, and its slope is called the derivative of f at x.</p>
+<p>This line&#8217;s slope is the ratio of the change in function value to the change in function argument. Hence, translating x by f(x) divided by the slope will give the argument value at which this tangent line touches 0.
+img/newton.png</p>
+<p>Our Newton update expresses the computational process of following this tangent line to 0. We approximate the derivative of the function by computing its slope over a very small interval.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">approx_derivative</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+<span class="go">        df = f(x + delta) - f(x)</span>
+<span class="go">        return df/delta</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">newton_update</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<span class="go">        def update(x):</span>
+<span class="go">            return x - f(x) / approx_derivative(f, x)</span>
+<span class="go">        return update</span>
+</pre></div>
+</div>
+<p>Finally, we can define the find_root function in terms of newton_update, our iterative improvement algorithm, and a test to see if f(x) is near 0. We supply a larger initial guess to improve performance for logarithm.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">find_root</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">initial_guess</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="go">        def test(x):</span>
+<span class="go">            return approx_eq(f(x), 0)</span>
+<span class="go">        return iter_improve(newton_update(f), test, initial_guess)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">square_root</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="go">4.000000000026422</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logarithm</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">5.000000094858201</span>
+</pre></div>
+</div>
+<p>As you experiment with Newton&#8217;s method, be aware that it will not always converge. The initial guess of iter_improve must be sufficiently close to the root, and various conditions about the function must be met. Despite this shortcoming, Newton&#8217;s method is a powerful general computational method for solving differentiable equations. In fact, very fast algorithms for logarithms and large integer division employ variants of the technique.</p>
+</div>
+<div class="section" id="id35">
+<h2>抽象概念と第一級関数<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>We began this section with the observation that user-defined functions are a crucial abstraction mechanism, because they permit us to express general methods of computing as explicit elements in our programming language. Now we&#8217;ve seen how higher-order functions permit us to manipulate these general methods to create further abstractions.</p>
+<p>As programmers, we should be alert to opportunities to identify the underlying abstractions in our programs, to build upon them, and generalize them to create more powerful abstractions. This is not to say that one should always write programs in the most abstract way possible; expert programmers know how to choose the level of abstraction appropriate to their task. But it is important to be able to think in terms of these abstractions, so that we can be ready to apply them in new contexts. The significance of higher-order functions is that they enable us to represent these abstractions explicitly as elements in our programming language, so that they can be handled just like other computational elements.</p>
+<p>In general, programming languages impose restrictions on the ways in which computational elements can be manipulated. Elements with the fewest restrictions are said to have first-class status. Some of the &#8220;rights and privileges&#8221; of first-class elements are:</p>
+<blockquote>
+<div>They may be bound to names.
+They may be passed as arguments to functions.
+They may be returned as the results of functions.
+They may be included in data structures.</div></blockquote>
+<p>Python awards functions full first-class status, and the resulting gain in expressive power is enormous. Control structures, on the other hand, do not: you cannot pass if to a function the way you can sum.</p>
+</div>
+<div class="section" id="id36">
+<h2>関数デコレータ<a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Python provides special syntax to apply higher-order functions as part of executing a def statement, called a decorator. Perhaps the most common example is a trace.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">trace1</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+<span class="go">        def wrapped(x):</span>
+<span class="go">            print(&#39;-&gt; &#39;, fn, &#39;(&#39;, x, &#39;)&#39;)</span>
+<span class="go">            return fn(x)</span>
+<span class="go">        return wrapped</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nd">@trace1</span>
+<span class="go">    def triple(x):</span>
+<span class="go">        return 3 * x</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">triple</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="go">-&gt;  &lt;function triple at 0x102a39848&gt; ( 12 )</span>
+<span class="go">36</span>
+</pre></div>
+</div>
+<p>In this example, A higher-order function trace1 is defined, which returns a function that precedes a call to its argument with a print statement that outputs the argument. The def statement for triple has an annototation, &#64;trace1, which affects the execution rule for def. As usual, the function triple is created. However, the name triple is not bound to this function. Instead, the name triple is bound to the returned function value of calling trace1 on the newly defined triple function. In code, this decorator is equivalent to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">triple</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="go">        return 3 * x</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">triple</span> <span class="o">=</span> <span class="n">trace1</span><span class="p">(</span><span class="n">triple</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the projects for this course, decorators are used for tracing, as well as selecting which functions to call when a program is run from the command line.</p>
+<p>Extra for experts. The actual rule is that the decorator symbol &#64; may be followed by an expression (&#64;trace1 is just a simple expression consisting of a single name). Any expression producing a suitable value is allowed. For example, with a suitable definition, you could define a decorator check_range so that decorating a function definition with &#64;check_range(1, 10) would cause the function&#8217;s results to be checked to make sure they are integers between 1 and 10. The call check_range(1,10) would return a function that would then be applied to the newly defined function before it is bound to the name in the def statement. A short tutorial on decorators by Ariel Ortiz gives further examples for interested students.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="2.objects.html" title="第二章：オブジェクトを用いた抽象概念の構築"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to SICP in Python Japanese Edition’s documentation!"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">SICP in Python Japanese Edition 2015.04.30 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Paul Hilfinger.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>

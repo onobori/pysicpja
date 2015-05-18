@@ -16,11 +16,11 @@ http://creativecommons.org/licenses/by-sa/3.0/
 .. toctree::
    :maxdepth: 2
 
-   functions
-   objects
-   interpretation
-   communication
-   streams
+   1.functions
+   2.objects
+   3.interpretation
+   4.communication
+   5.streams
 
 
 Indices and tables
