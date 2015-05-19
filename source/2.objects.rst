@@ -1751,7 +1751,9 @@ Bound method values. The get_value function in make_instance finds a named attri
             return value
 
 When a method is called, the first parameter self will be bound to the value of instance by this definition.
-2.6.2   Classes
+
+2.6.2 クラス
+============
 
 A class is also an object, both in Python's object system and the system we are implementing here. For simplicity, we say that classes do not themselves have a class. (In Python, classes do have classes; almost all classes share the same class, called type.) A class can respond to get and set messages, as well as the new message:
 
@@ -1784,7 +1786,9 @@ Initialization. The new function in make_class calls init_instance, which first 
 This final function completes our object system. We now have instances, which set locally but fall back to their classes on get. After an instance looks up a name in its class, it binds itself to function values to create methods. Finally, classes can create new instances, and they apply their __init__ constructor function immediately after instance creation.
 
 In this object system, the only function that should be called by the user is create_class. All other functionality is enabled through message passing. Similarly, Python's object system is invoked via the class statement, and all of its other functionality is enabled through dot expressions and calls to classes.
-2.6.3   Using Implemented Objects
+
+2.6.3 実装したオブジェクトを使う
+================================
 
 We now return to use the bank account example from the previous section. Using our implemented object system, we will create an Account class, a CheckingAccount subclass, and an instance of each.
 
@@ -1862,12 +1866,15 @@ Deposits behave identically, as does the constructor function. withdrawals impos
 14
 
 Our object system built upon dictionaries is quite similar in implementation to the built-in object system in Python. In Python, an instance of any user-defined class has a special attribute __dict__ that stores the local instance attributes for that object in a dictionary, much like our attributes dictionary. Python differs because it distinguishes certain special methods that interact with built-in functions to ensure that those functions behave correctly for arguments of many different types. Functions that operate on different types are the subject of the next section.
-2.7   Generic Operations
+
+2.7 ジェネリックオペレーション
+====================
 
 In this chapter, we introduced compound data values, along with the technique of data abstraction using constructors and selectors. Using message passing, we endowed our abstract data types with behavior directly. Using the object metaphor, we bundled together the representation of data and the methods used to manipulate that data to modularize data-driven programs with local state.
 
 However, we have yet to show that our object system allows us to combine together different types of objects flexibly in a large program. Message passing via dot expressions is only one way of building combined expressions with multiple objects. In this section, we explore alternate methods for combining and manipulating objects of different types.
-2.7.1   String Conversion
+2.7.1 文字列変換
+================
 
 We stated in the beginning of this chapter that an object value should behave like the kind of data it is meant to represent, including producing a string representation of itself. String representations of data values are especially important in an interactive language like Python, where the read-eval-print loop requires every value to have some sort of string representation.
 
@@ -1916,7 +1923,9 @@ The str constructor is implemented in a similar manner: it invokes a method call
 '2011-09-12'
 
 These polymorphic functions are examples of a more general principle: certain functions should apply to multiple data types. The message passing approach exemplified here is only one of a family of techniques for implementing polymorphic functions. The remainder of this section explores some alternatives.
-2.7.2   Multiple Representations
+
+2.7.2 多重表現
+==============
 
 Data abstraction, using objects or functions, is a powerful tool for managing complexity. Abstract data types allow us to construct an abstraction barrier between the underlying representation of data and the functions or messages used to manipulate it. However, in large programs, it may not always make sense to speak of "the underlying representation" for a data type in a program. For one thing, there might be more than one useful representation for a data object, and we might like to design systems that can deal with multiple representations.
 
@@ -2019,7 +2028,9 @@ ComplexMA(1.0, 3.141592653589793)
 Further reading. To evaluate expressions that contain the + operator, Python checks for special methods on both the left and right operands of the expression. First, Python checks for an __add__ method on the value of the left operand, then checks for an __radd__ method on the value of the right operand. If either is found, that method is invoked with the value of the other operand as its argument.
 
 Similar protocols exist for evaluating expressions that contain any kind of operator in Python, including slice notation and Boolean operators. The Python docs list the exhaustive set of method names for operators. Dive into Python 3 has a chapter on special method names that describes many details of their use in the Python interpreter.
-2.7.3   Generic Functions
+
+2.7.3 ジェネリック関数
+======================
 
 Our implementation of complex numbers has made two data types interchangeable as arguments to the add_complex and mul_complex functions. Now we will see how to use this same idea not only to define operations that are generic over different representations but also to define operations that are generic over different kinds of arguments that do not share a common interface.
 
