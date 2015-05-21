@@ -441,7 +441,9 @@ This final environment diagram shows the local frame for the call to first, whic
 This example demonstrates a common pattern of computation with recursive lists, where each step in an iteration operates on an increasingly shorter suffix of the original list. This incremental processing to find the length and elements of a recursive list does take some time to compute. (In Chapter 3, we will learn to characterize the computation time of iterative functions like these.) Python's built-in sequence types are implemented in a different way that does not have a large computational cost for computing the length of a sequence or retrieving its elements.
 
 The way in which we construct recursive lists is rather verbose. Fortunately, Python provides a variety of built-in sequence types that provide both the versatility of the sequence abstraction, as well as convenient notation.
-2.3.3   Tuples II
+
+2.3.3 タプルII
+==============
 
 In fact, the tuple type that we introduced to form primitive pairs is itself a full sequence type. Tuples provide substantially more functionality than the pair abstract data type that we implemented functionally.
 
@@ -465,7 +467,9 @@ Mapping. A powerful method of transforming one tuple into another is by applying
 (1, 2, 3, 4, 5)
 
 The map function is important because it relies on the sequence abstraction: we do not need to be concerned about the structure of the underlying tuple; only that we can access each one of its elements individually in order to pass it as an argument to the mapped function (abs, in this case).
-2.3.4   Sequence Iteration
+
+2.3.4 シーケンスイテレーション
+==============================
 
 Mapping is itself an instance of a general pattern of computation: iterating over all elements in a sequence. To map a function over a sequence, we do not just select a particular element, but each element in turn. This pattern is so common that Python has an additional control statement to process sequential data: the for statement.
 
@@ -565,7 +569,9 @@ Go Bears!
 Go Bears!
 
 Note that an underscore is just another name in the environment as far as the interpreter is concerned, but has a conventional meaning among programmers that indicates the name will not appear in any expressions.
-2.3.5   Sequence Abstraction
+
+2.3.5 シーケンス抽象
+====================
 
 We have now introduced two types of native data types that implement the sequence abstraction: tuples and ranges. Both satisfy the conditions with which we began this section: length and element selection. Python includes two more behaviors of sequence types that extend the sequence abstraction.
 
@@ -594,7 +600,9 @@ Enumerating these additional behaviors of the Python sequence abstraction gives 
 Sequences have a rich abstraction because they are so ubiquitous in computing that learning a few complex behaviors is justified. In general, most user-defined abstractions should be kept as simple as possible.
 
 Further reading. Slice notation admits a variety of special cases, such as negative starting values, ending values, and step sizes. A complete description appears in the subsection called slicing a list in Dive Into Python 3. In this chapter, we will only use the basic features described above.
-2.3.6   Strings
+
+2.3.6 文字列
+============
 
 Text values are perhaps more fundamental to computer science than even numbers. As a case in point, Python programs are written and stored as text. The native data type for text in Python is called a string, and corresponds to the constructor str.
 
@@ -666,7 +674,9 @@ True
 True
 
 Further reading. Encoding text in computers is a complex topic. In this chapter, we will abstract away the details of how strings are represented. However, for many applications, the particular details of how strings are encoded by computers is essential knowledge. Sections 4.1-4.3 of Dive Into Python 3 provides a description of character encodings and Unicode.
-2.3.7   Conventional Interfaces
+
+2.3.7 慣習的インターフェイス
+============================
 
 In working with compound data, we've stressed how data abstraction permits us to design programs without becoming enmeshed in the details of data representations, and how abstraction preserves for us the flexibility to experiment with alternative representations. In this section, we introduce another powerful design principle for working with data structures --- the use of conventional interfaces.
 
@@ -783,14 +793,18 @@ Using this more general form of accumulation, we can also compute the product of
 123476336640
 
 The combination of higher order procedures corresponding to map, filter, and reduce will appear again in Chapter 4, when we consider methods for distributing computation across multiple computers.
-2.4   Mutable Data
+
+2.4 可変データ
+==============
 
 We have seen how abstraction is vital in helping us to cope with the complexity of large systems. Effective program synthesis also requires organizational principles that can guide us in formulating the overall design of a program. In particular, we need strategies to help us structure large systems so that they will be modular, that is, so that they can be divided "naturally" into coherent parts that can be separately developed and maintained.
 
 One powerful technique for creating modular programs is to introduce new kinds of data that may change state over time. In this way, a single data object can represent something that evolves independently of the rest of the program. The behavior of a changing object may be influenced by its history, just like an entity in the world. Adding state to data is an essential ingredient of our final destination in this chapter: object-oriented programming.
 
 The native data types we have introduced so far --- numbers, Booleans, tuples, ranges, and strings --- are all types of immutable objects. While names may change bindings to different values in the environment during the course of execution, the values themselves do not change. In this section, we will introduce a collection of mutable data types. Mutable objects can change throughout the execution of a program.
-2.4.1   Local State
+
+2.4.1 局所状態
+==============
 
 Our first example of a mutable object will be a function that has local state. That state will change during the course of execution of a program.
 
@@ -862,7 +876,9 @@ img/nonlocal_recall.png
 Here, the second call to withdraw did create a second local frame, as usual. However, both withdraw frames extend the environment for make_withdraw, which contains the binding for balance. Hence, they share that particular name binding. Calling withdraw has the side effect of altering the environment that will be extended by future calls to withdraw.
 
 Practical guidance. By introducing nonlocal statements, we have created a dual role for assignment statements. Either they change local bindings, or they change nonlocal bindings. In fact, assignment statements already had a dual role: they either created new bindings or re-bound existing names. The many roles of Python assignment can obscure the effects of executing an assignment statement. It is up to you as a programmer to document your code clearly so that the effects of assignment can be understood by others.
-2.4.2   The Benefits of Non-Local Assignment
+
+2.4.2 非局所代入の長所
+======================
 
 Non-local assignment is an important step on our path to viewing a program as a collection of independent and autonomous objects, which interact with each other but each manage their own internal state.
 
@@ -884,7 +900,9 @@ This call changes the binding of its nonlocal balance name, but does not affect 
 img/nonlocal_call2.png
 
 In this way, each instance of withdraw is maintaining its own balance state, but that state is inaccessible to any other function in the program. Viewing this situation at a higher level, we have created an abstraction of a bank account that manages its own internals but behaves in a way that models accounts in the world: it changes over time based on its own history of withdrawal requests.
-2.4.3   The Cost of Non-Local Assignment
+
+2.4.3 非局所代入の短所
+======================
 
 Our environment model of computation cleanly extends to explain the effects of non-local assignment. However, non-local assignment introduces some important nuances in the way we think about names and values.
 
@@ -913,7 +931,9 @@ Re-binding operations violate the conditions of referential transparency because
 In general, so long as we never modify data objects, we can regard a compound data object to be precisely the totality of its pieces. For example, a rational number is determined by giving its numerator and its denominator. But this view is no longer valid in the presence of change, where a compound data object has an "identity" that is something different from the pieces of which it is composed. A bank account is still "the same" bank account even if we change the balance by making a withdrawal; conversely, we could have two bank accounts that happen to have the same balance, but are different objects.
 
 Despite the complications it introduces, non-local assignment is a powerful tool for creating modular programs. Different parts of a program, which correspond to different environment frames, can evolve separately throughout program execution. Moreover, using functions with local state, we are able to implement mutable data types. In the remainder of this section, we introduce some of the most useful built-in data types in Python, along with methods for implementing those data types using functions with non-local assignment.
-2.4.4   Lists
+
+2.4.4 リスト
+============
 
 The list is Python's most useful and flexible sequence type. A list is similar to a tuple, but it is mutable. Method calls and assignment statements can change the contents of a list.
 
@@ -1061,7 +1081,9 @@ Message passing. Given some time, we could implement the many useful mutation op
 This second approach, which encapsulates the logic for all operations on a data value within one function that responds to different messages, is called message passing. A program that uses message passing defines dispatch functions, each of which may have local state, and organizes computation by passing "messages" as the first argument to those functions. The messages are strings that correspond to particular behaviors.
 
 One could imagine that enumerating all of these messages by name in the body of dispatch would become tedious and prone to error. Python dictionaries, introduced in the next section, provide a data type that will help us manage the mapping between messages and operations.
-2.4.5   Dictionaries
+
+2.4.5 辞書
+==========
 
 Dictionaries are Python's built-in data type for storing and manipulating correspondence relationships. A dictionary contains key-value pairs, where both the keys and values are objects. The purpose of a dictionary is to provide an abstraction for storing and retrieving values that are indexed not by consecutive integers, but by descriptive keys.
 
@@ -1157,7 +1179,9 @@ We can now use our implementation to store and retrieve values.
 (9, 16)
 
 This implementation of a dictionary is not optimized for fast record lookup, because each response to the message 'getitem' must iterate through the entire list of records. The built-in dictionary type is considerably more efficient.
-2.4.6   Example: Propagating Constraints
+
+2.4.6 例題：伝播する制約
+========================
 
 Mutable data allows us to simulate systems with change, but also allows us to build new kinds of abstractions. In this extended example, we combine nonlocal assignment, lists, and dictionaries to build a constraint-based system that supports computation in multiple directions. Expressing programs as constraints is a type of declarative programming, in which a programmer declares the structure of a problem to be solved, but abstracts away the details of exactly how the solution to the problem is computed.
 
@@ -1349,14 +1373,18 @@ If a connector is asked to forget its value, it calls the local function forget-
 The response to the message has_val indicates whether the connector has a value. The response to the message connect adds the source constraint to the list of constraints.
 
 The constraint program we have designed introduces many ideas that will appear again in object-oriented programming. Constraints and connectors are both abstractions that are manipulated through messages. When the value of a connector is changed, it is changed via a message that not only changes the value, but validates it (checking the source) and propagates its effects (informing other constraints). In fact, we will use a similar architecture of dictionaries with string-valued keys and functional values to implement an object-oriented system later in this chapter.
-2.5   Object-Oriented Programming
+
+2.5 オブジェクト指向プログラミング
+==================================
 
 Object-oriented programming (OOP) is a method for organizing programs that brings together many of the ideas introduced in this chapter. Like abstract data types, objects create an abstraction barrier between the use and implementation of data. Like dispatch dictionaries in message passing, objects respond to behavioral requests. Like mutable data structures, objects have local state that is not directly accessible from the global environment. The Python object system provides new syntax to ease the task of implementing all of these useful techniques for organizing programs.
 
 But the object system offers more than just convenience; it enables a new metaphor for designing programs in which several independent agents interact within the computer. Each object bundles together local state and behavior in a way that hides the complexity of both behind a data abstraction. Our example of a constraint program began to develop this metaphor by passing messages between constraints and connectors. The Python object system extends this metaphor with new ways to express how different parts of a program relate to and communicate with each other. Not only do objects pass messages, they also share behavior among other objects of the same type and inherit characteristics from related types.
 
 The paradigm of object-oriented programming has its own vocabulary that reinforces the object metaphor. We have seen that an object is a data value that has methods and attributes, accessible via dot notation. Every object also has a type, called a class. New classes can be defined in Python, just as new functions can be defined.
-2.5.1   Objects and Classes
+
+2.5.1 オブジェクトとクラス
+==========================
 
 A class serves as a template for all objects whose type is that class. Every object is an instance of some particular class. The objects we have used so far all have built-in classes, but new classes can be defined similarly to how new functions can be defined. A class definition specifies the attributes and methods shared among objects of that class. We will introduce the class statement by revisiting the example of a bank account.
 
@@ -1388,7 +1416,9 @@ In OOP, we say that methods are invoked on a particular object. As a result of i
 'Insufficient funds'
 
 As illustrated above, the behavior of a method can depend upon the changing attributes of the object. Two calls to withdraw with the same argument return different results.
-2.5.2   Defining Classes
+
+2.5.2 クラスの定義
+==================
 
 User-defined classes are created by class statements, which consist of a single clause. A class statement defines the class name and a base class (discussed in the section on Inheritance), then includes a suite of statements to define the attributes of the class:
 
@@ -1477,7 +1507,9 @@ To invoke these methods, we again use dot notation, as illustrated below.
 'Tom'
 
 When a method is invoked via dot notation, the object itself (bound to tom_account, in this case) plays a dual role. First, it determines what the name withdraw means; withdraw is not a name in the environment, but instead a name that is local to the Account class. Second, it is bound to the first parameter self when the withdraw method is invoked. The details of the procedure for evaluating dot notation follow in the next section.
-2.5.3   Message Passing and Dot Expressions
+
+2.5.3 メッセージパッシングとドット式
+====================================
 
 Methods, which are defined in classes, and instance attributes, which are typically assigned in constructors, are the fundamental elements of object-oriented programming. These two concepts replicate much of the behavior of a dispatch dictionary in a message passing implementation of a data value. Objects take messages using dot notation, but instead of those messages being arbitrary string-valued keys, they are names local to a class. Objects also have named local state values (the instance attributes), but that state can be accessed and manipulated using dot notation, without having to employ nonlocal statements in the implementation.
 
@@ -1526,7 +1558,9 @@ The function getattr behaves exactly like dot notation: if its first argument is
 Practical guidance: naming conventions. Class names are conventionally written using the CapWords convention (also called CamelCase because the capital letters in the middle of a name are like humps). Method names follow the standard convention of naming functions using lowercased words separated by underscores.
 
 In some cases, there are instance variables and methods that are related to the maintenance and consistency of an object that we don't want users of the object to see or use. They are not part of the abstraction defined by a class, but instead part of the implementation. Python's convention dictates that if an attribute name starts with an underscore, it should only be accessed within methods of the class itself, rather than by users of the class.
-2.5.4   Class Attributes
+
+2.5.4 クラス属性
+================
 
 Some attribute values are shared across all objects of a given class. Such attributes are associated with the class itself, rather than any individual instance of the class. For instance, let us say that a bank pays interest on the balance of accounts at a fixed interest rate. That interest rate may change, but it is a single value shared across all accounts.
 
@@ -1595,7 +1629,8 @@ Changes to the class attribute interest will affect tom_account, but the instanc
 >>> jim_account.interest     # but the existing instance attribute is unaffected
 0.08
 
-2.5.5   Inheritance
+2.5.5 継承
+==========
 
 When working in the OOP paradigm, we often find that different abstract data types are related. In particular, we find that similar classes differ in their amount of specialization. Two classes may have similar attributes, but one represents a special case of the other.
 
@@ -1614,7 +1649,9 @@ A CheckingAccount is a specialization of an Account. In OOP terminology, the gen
 A subclass inherits the attributes of its base class, but may override certain attributes, including certain methods. With inheritance, we only specify what is different between the subclass and the base class. Anything that we leave unspecified in the subclass is automatically assumed to behave just as it would for the base class.
 
 Inheritance also has a role in our object metaphor, in addition to being a useful organizational feature. Inheritance is meant to represent is-a relationships between classes, which contrast with has-a relationships. A checking account is-a specific type of account, so having a CheckingAccount inherit from Account is an appropriate use of inheritance. On the other hand, a bank has-a list of bank accounts that it manages, so neither should inherit from the other. Instead, a list of account objects would be naturally expressed as an instance attribute of a bank object.
-2.5.6   Using Inheritance
+
+2.5.6 継承を使う
+================
 
 We specify inheritance by putting the base class in parentheses after the class name. First, we give a full implementation of the Account class, which includes docstrings for the class and its methods.
 
@@ -1666,7 +1703,9 @@ The class of an object stays constant throughout. Even though the deposit method
 Calling ancestors. Attributes that have been overridden are still accessible via class objects. For instance, we implemented the withdraw method of CheckingAccount by calling the withdraw method of Account with an argument that included the withdraw_charge.
 
 Notice that we called self.withdraw_charge rather than the equivalent CheckingAccount.withdraw_charge. The benefit of the former over the latter is that a class that inherits from CheckingAccount might override the withdrawal charge. If that is the case, we would like our implementation of withdraw to find that new value instead of the old one.
-2.5.7   Multiple Inheritance
+
+2.5.7 多重継承
+==============
 
 Python supports the concept of a subclass inheriting attributes from multiple base classes, a language feature called multiple inheritance.
 
@@ -1716,7 +1755,9 @@ Further reading. Python resolves this name using a recursive algorithm called th
 ['AsSeenOnTVAccount', 'CheckingAccount', 'SavingsAccount', 'Account', 'object']
 
 The precise algorithm for finding method resolution orderings is not a topic for this course, but is described by Python's primary author with a reference to the original paper.
-2.5.8   The Role of Objects
+
+2.5.8 オブジェクトの役割
+========================
 
 The Python object system is designed to make data abstraction and message passing both convenient and flexible. The specialized syntax of classes, methods, inheritance, and dot expressions all enable us to formalize the object metaphor in our programs, which improves our ability to organize large programs.
 
@@ -1727,14 +1768,18 @@ Object-oriented programming is particularly well-suited to programs that model s
 On the other hand, classes may not provide the best mechanism for implementing certain abstractions. Functional abstractions provide a more natural metaphor for representing relationships between inputs and outputs. One should not feel compelled to fit every bit of logic in a program within a class, especially when defining independent functions for manipulating data is more natural. Functions can also enforce a separation of concerns.
 
 Multi-paradigm languages like Python allow programmers to match organizational paradigms to appropriate problems. Learning to identify when to introduce a new class, as opposed to a new function, in order to simplify or modularize a program, is an important design skill in software engineering that deserves careful attention.
-2.6   Implementing Classes and Objects
+
+2.6 クラスとオブジェクトの実装
+==============================
 
 When working in the object-oriented programming paradigm, we use the object metaphor to guide the organization of our programs. Most logic about how to represent and manipulate data is expressed within class declarations. In this section, we see that classes and objects can themselves be represented using just functions and dictionaries. The purpose of implementing an object system in this way is to illustrate that using the object metaphor does not require a special programming language. Programs can be object-oriented, even in programming languages that do not have a built-in object system.
 
 In order to implement objects, we will abandon dot notation (which does require built-in language support), but create dispatch dictionaries that behave in much the same way as the elements of the built-in object system. We have already seen how to implement message-passing behavior through dispatch dictionaries. To implement an object system in full, we send messages between instances, classes, and base classes, all of which are dictionaries that contain attributes.
 
 We will not implement the entire Python object system, which includes features that we have not covered in this text (e.g., meta-classes and static methods). We will focus instead on user-defined classes without multiple inheritance and without introspective behavior (such as returning the class of an instance). Our implementation is not meant to follow the precise specification of the Python type system. Instead, it is designed to implement the core functionality that enables the object metaphor.
-2.6.1   Instances
+
+2.6.1 インスタンス
+==================
 
 We begin with instances. An instance has named attributes, such as the balance of an account, which can be set and retrieved. We implement an instance using a dispatch dictionary that responds to messages that "get" and "set" attribute values. Attributes themselves are stored in a local dictionary called attributes.
 
