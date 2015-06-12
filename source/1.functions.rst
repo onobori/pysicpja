@@ -216,17 +216,17 @@ Pythonプロンプトはあなたの入力を待機している。たとえあ�
   
 コンピューターは非常に強力で、膨大な量のデータを瞬時に参照できる。コンピューターは、一つ一つは非常に単純な計算を、一秒間に数十億回も行う。
   
-また、コンピューターはビックリするほど頭が悪く、そして壊れやすい。コンピューターが行う操作は極めて厳格で単純で、そして機械的である。コンピューターには何か現実的な視点が欠けている...それは映画のHAL9000以外の何者でもない。If nothing else, you should not be intimidated by the computer as if it's some sort of brain. It's very mechanical underneath it all.
+また、コンピューターはビックリするほど頭が悪く、そして壊れやすい。コンピューターが行う操作は極めて厳格で単純で、そして機械的である。コンピューターには何か現実的な視点が欠けている...それは映画のHAL9000以外の何者でもない。もしそうでないならば、たとえ一種の知能であったとしても、コンピューターによって人間が脅かされるべきではない。 It's very mechanical underneath it all.
   
-    Programming is about a person using their real insight to build something useful, constructed out of these teeny, simple little operations that the computer can do.
+    プログラミングとはおよそ人間が洞察力を用いて何か便利なものを構築したり、コンピューターが出来る小さく単純な命令を構築することだ。
   
-      —Francisco Cai and Nick Parlante, Stanford CS101
+      —フランシスコ・カイとニック・パーラント スタンフォード大学CS101の講義にて
 
-The rigidity of computers will immediately become apparent as you experiment with the Python interpreter: even the smallest spelling and formatting changes will cause unexpected outputs and errors.
+コンピューターの厳密さはPythonインタプリタを操作することですぐに理解出来るようになるだろう。: たとえどんなに小さなスペルミスやフォーマットの変更でさえ、プログラマが予想もしない出力やエラーを引き起こす。
 
-Learning to interpret errors and diagnose the cause of unexpected errors is called debugging. Some guiding principles of debugging are:
+解釈エラーや予想もしていなかったエラーの原因を診断することを学ぶことはデバッグと呼ばれる。いくつかのデバッグの指導的原則とは以下のようなものだ。
 
-    Test incrementally: Every well-written program is composed of small, modular components that can be tested individually. Test everything you write as soon as possible to catch errors early and gain confidence in your components.
+    漸近的なテスト： 全てのよく練られたプログラムは、個別にテストされた、小さく、部品化されたプログラムから出来ている。Test everything you write as soon as possible to catch errors early and gain confidence in your components.
     Isolate errors: An error in the output of a compound program, expression, or statement can typically be attributed to a particular modular component. When trying to diagnose a problem, trace the error to the smallest fragment of code you can before trying to correct it.
     Check your assumptions: Interpreters do carry out your instructions to the letter --- no more and no less. Their output is unexpected when the behavior of some code does not match what the programmer believes (or assumes) that behavior to be. Know your assumptions, then focus your debugging effort on verifying that your assumptions actually hold.
     Consult others: You are not alone! If you don't understand an error message, ask a friend, instructor, or search engine. If you have isolated an error, but can't figure out how to correct it, ask someone else to take a look. A lot of valuable programming knowledge is shared in the context of team problem solving.
